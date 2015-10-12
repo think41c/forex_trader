@@ -17,9 +17,19 @@ class Forex
     puts "What percentage of trades will you win? 0-100 is allowed."
     percentage = gets.chomp
     puts "We presume the exit is equadistant on both the winning and losing exit, therefore profit amounts are same loss amounts."
-    puts "What's your initial win/loss dollar amount?"
+    puts "What's your initial win/loss dollar amount? 0-100 is allowed."
     amount = gets.chomp
-
+    puts "If you have a winning trade, would you like your next position size to be based on a percentage or a fixed amount more or less?"
+    puts "(F)ixed or (P)ercentage"
+    win_fix_or_perc = gets.chomp
+    puts "What amount more or less would it be? (-100 to infinite for percentage or any infinite for fixed)"
+    winner_change = gets.chomp
+    puts "If you have a LOSING trade, would you like your next position size to be based on a percentage or a fixed amount more or less?"
+    puts "(F)ixed or (P)ercentage"
+    lose_fix_or_perc = gets.chomp
+    puts "What amount more or less would it be? (-100 to infinite for percentage or any infinite for fixed)"
+    loser_change = gets.chomp
+    
   end
 end
 
