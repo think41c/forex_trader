@@ -17,27 +17,29 @@ class Forex
 
   def get_user_data
     puts "How many trades would you like to simulate? 10-20 is allowed."
-    @trades = gets.chomp 
+    @trades = gets.chomp.to_i
     puts "What percentage of trades will you win? 0-100 is allowed."
-    @percentage = gets.chomp
+    @percentage = gets.chomp.to_i
     puts "We presume the exit is equadistant on both the winning and losing exit, therefore profit amounts are same loss amounts."
     puts "What's your initial win/loss dollar amount? 0-100 is allowed."
-    @amount = gets.chomp
+    @amount = gets.chomp.to_i
     puts "If you have a winning trade, would you like your next position size to be based on a percentage or a fixed amount more or less?"
     puts "(F)ixed or (P)ercentage"
     win_fix_or_perc = gets.chomp
     puts "What amount more or less would it be? (-100 to infinite for percentage or any infinite for fixed)"
-    @winner_change = gets.chomp
+    @winner_change = gets.chomp.to_i
     puts "If you have a LOSING trade, would you like your next position size to be based on a percentage or a fixed amount more or less?"
     puts "(F)ixed or (P)ercentage"
     @lose_fix_or_perc = gets.chomp
     puts "What amount more or less would it be? (-100 to infinite for percentage or any infinite for fixed)"
-    @loser_change = gets.chomp
+    @loser_change = gets.chomp.to_i
   end
 
   def define_fixed_wins
     # Here we need to take the percentage of wins and then reduce that to a fixed whole number based on the trades to test
-    @win_trades = @percentage / 100 * @trades
+    puts "We're in fixed wins with @win_trades being #{@win_trades} and percentage being #{@percentage} and trades being #{@trades}"
+    puts "#{@percentage / 100} is the percentage you want to multiply your winning trades by."
+    @win_trades = (@percentage / 100) * @trades
     puts @win_trades
   end
 
