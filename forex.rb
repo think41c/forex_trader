@@ -36,13 +36,8 @@ class Forex
   end
 
   def define_fixed_wins
-    # Here we need to take the percentage of wins and then reduce that to a fixed whole number based on the trades to test
-    puts "We're in fixed wins with @win_trades being #{@win_trades} and percentage being #{@percentage} and trades being #{@trades}"
-    puts "#{@percentage / 100} is the percentage you want to multiply your winning trades by."
-    puts 50 / 100 
-    puts "50 divided by 100 is #{50.to_f/100.to_f}. Also you're trading #{@trades} amount of trades. Therefore #{@percentage} / 100 is #{@percentage.to_f / 100.to_f} "
     @win_trades = (@percentage.to_f / 100) * @trades
-    puts @win_trades.to_i
+    @win_trades = @win_trades.to_i
   end
 
   def generate_all_trades
@@ -55,6 +50,7 @@ class Forex
     get_user_data
     define_fixed_wins
     generate_all_trades
+    puts @win_trades
   end
 end
 
