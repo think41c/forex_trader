@@ -39,6 +39,8 @@ class Forex
     # Here we need to take the percentage of wins and then reduce that to a fixed whole number based on the trades to test
     puts "We're in fixed wins with @win_trades being #{@win_trades} and percentage being #{@percentage} and trades being #{@trades}"
     puts "#{@percentage / 100} is the percentage you want to multiply your winning trades by."
+    puts 50 / 100 
+    puts "50 divided by 100 is #{50/100}. Also you're trading #{@trades} amount of trades. Therefore #{@percentage} / 100 is #{@percentage / 100} "
     @win_trades = (@percentage / 100) * @trades
     puts @win_trades
   end
