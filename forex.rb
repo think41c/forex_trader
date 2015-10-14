@@ -35,6 +35,10 @@ class Forex
     @loser_change = gets.chomp
   end
 
+  def define_fixed_wins
+    # Here we need to take the percentage of wins and then reduce that to a fixed whole number based on the trades to test
+  end
+
   def generate_all_trades
     # Here we need to deal with every permutation possible of the percentage wins/losses he might have. 
   end
@@ -43,6 +47,7 @@ class Forex
   def menu
     intro
     get_user_data
+    define_fixed_wins
     generate_all_trades
   end
 end
