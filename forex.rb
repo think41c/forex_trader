@@ -35,10 +35,15 @@ class Forex
     @loser_change = gets.chomp
   end
 
+  def generate_all_trades
+    # Here we need to deal with every permutation possible of the percentage wins/losses he might have. 
+  end
+
+
   def menu
     intro
     get_user_data
-   
+    generate_all_trades
   end
 end
 
