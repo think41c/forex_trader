@@ -42,7 +42,7 @@ class Forex
     puts 50 / 100 
     puts "50 divided by 100 is #{50.to_f/100.to_f}. Also you're trading #{@trades} amount of trades. Therefore #{@percentage} / 100 is #{@percentage.to_f / 100.to_f} "
     @win_trades = (@percentage.to_f / 100) * @trades
-    puts @win_trades
+    puts @win_trades.to_i
   end
 
   def generate_all_trades
