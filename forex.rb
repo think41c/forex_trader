@@ -37,6 +37,8 @@ class Forex
 
   def define_fixed_wins
     # Here we need to take the percentage of wins and then reduce that to a fixed whole number based on the trades to test
+    @win_trades = @percentage / 100 * @trades
+    puts @win_trades
   end
 
   def generate_all_trades
