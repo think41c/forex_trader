@@ -41,6 +41,8 @@ class Forex
   end
 
   def generate_all_trades
+    @lose_trades = @trades - @win_trades
+    puts @lose_trades
     # Here we need to deal with every permutation possible of the percentage wins/losses he might have. 
   end
 
@@ -51,6 +53,7 @@ class Forex
     define_fixed_wins
     generate_all_trades
     puts @win_trades
+    
   end
 end
 
