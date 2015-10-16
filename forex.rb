@@ -55,10 +55,9 @@ class Forex
     @lose_trades.times do 
       puts "This is was losing trade"
     end
-    @win_trades do
+    @win_trades.times do
       puts "This was a winning trade"
     end
-    
   end
 
 
