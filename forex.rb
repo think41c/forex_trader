@@ -52,17 +52,20 @@ class Forex
     all_trades = Array.new(@trades)
     puts all_trades
     p all_trades
-    win_spot = 0
+    win_spot = @lose_trades
     lose_spot = 0
     @lose_trades.times do 
       all_trades[lose_spot] = 0
       puts "This is was losing trade"
+      lose_spot += 1 
     end
 
     @win_trades.times do
       all_trades[win_spot] = 1
       puts "This was a winning trade"
+      win_spot += 1
     end
+    puts all_trades
   end
 
 
