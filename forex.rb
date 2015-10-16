@@ -74,7 +74,7 @@ class Forex
     get_user_data
     define_fixed_wins
     generate_all_trades
-    puts @win_trades
+    # puts @win_trades
     
   end
 end
