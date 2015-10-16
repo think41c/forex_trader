@@ -65,7 +65,7 @@ class Forex
       puts "This was a winning trade"
       win_spot += 1
     end
-    puts all_trades
+    p all_trades
   end
 
 
@@ -74,8 +74,6 @@ class Forex
     get_user_data
     define_fixed_wins
     generate_all_trades
-    # puts @win_trades
-    
   end
 end
 
