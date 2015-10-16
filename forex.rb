@@ -43,7 +43,15 @@ class Forex
   def generate_all_trades
     @lose_trades = @trades - @win_trades
     puts @lose_trades
+    trade_array
     # Here we need to deal with every permutation possible of the percentage wins/losses he might have. 
+  end
+
+  def trade_array
+    # This takes winning trades and places them in an array as a 1, and losing trades as a 0.
+    all_trades = Array.new(@trades)
+    puts all_trades
+    p all_trades
   end
 
 
