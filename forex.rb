@@ -45,6 +45,7 @@ class Forex
     puts @lose_trades
     wins_and_losses = trade_array
     puts "Here's your wins and losses #{p wins_and_losses}"
+    puts "There will be #{@trades} amount of permutations"  # This needs to be factoral ...not a predetermined number.
     # Here we need to deal with every permutation possible of the percentage wins/losses he might have. 
   end
 
