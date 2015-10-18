@@ -47,6 +47,7 @@ class Forex
     winning_profit_on_this_sequence = @win_trades.to_i * @amount.to_i
     losing_losses_on_this_sequence = @lose_trades.to_i * @amount.to_i
     total_pandl = winning_profit_on_this_sequence - losing_losses_on_this_sequence
+    the_profits_for_each_sequence = []
     p winning_profit_on_this_sequence 
     p @win_trades
     p @amount
@@ -54,6 +55,7 @@ class Forex
     puts "With your #{@trades} trades, you won #{@win_trades} times. And made $#{@amount} each winning trade,"
     puts "totalling #{winning_profit_on_this_sequence} in winners and #{losing_losses_on_this_sequence} in losses."
     puts "So your total P&L is #{total_pandl}"
+    the_profits_for_each_sequence << total_pandl
   end
 
   def generate_all_trades
@@ -69,6 +71,9 @@ class Forex
     puts "Here's your wins and losses #{p wins_and_losses}"
     puts "There will be #{@trades} amount of permutations"  # This needs to be permutation calculation ...not a predetermined number.
     # Here we need to deal with every permutation possible of the percentage wins/losses he might have. 
+
+    # Rearrange the array, and take that array and give it to the 'profits' method to determine what the profits are.
+    # Return the answer into an array. 
   end
 
   def trade_array
