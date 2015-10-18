@@ -23,6 +23,7 @@ class Forex
     puts "We presume the exit is equadistant on both the winning and losing exit, therefore profit amounts are same loss amounts."
     puts "What's your initial win/loss dollar amount? 0-100 is allowed."
     @amount = gets.chomp.to_i
+    puts "You may want to increase your size if you're winning, meaning you're looking at an anti-martingale system. So:"
     puts "If you have a winning trade, would you like your next position size to be based on a percentage or a fixed amount more or less?"
     puts "(F)ixed or (P)ercentage"
     win_fix_or_perc = gets.chomp
