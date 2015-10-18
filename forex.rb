@@ -41,7 +41,7 @@ class Forex
     @win_trades = @win_trades.to_i
   end
 
-  def profits
+  def profits()
 
   # This calculates the amount you would have won/lost for each potential win/loss trade combination possibility. 
     winning_profit_on_this_sequence = @win_trades.to_i * @amount.to_i
@@ -77,6 +77,7 @@ class Forex
   end
 
   def trade_array
+    # This is only generated one time. It's the master array we will shuffle around.
     # This takes winning trades and places them in an array as a 1, and losing trades as a 0.
     all_trades = Array.new(@trades)
     # The win_spot is the location in the array where a winning trade will reside initially before shuffled around.
