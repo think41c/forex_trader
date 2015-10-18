@@ -41,8 +41,18 @@ class Forex
   end
 
   def profits
+
   # This calculates the amount you would have won/lost for each potential win/loss trade combination possibility. 
-    puts "With your #{@trades} trades, you won #{@win_trades} times. And made $#{@amount} each winning trade."
+    winning_profit_on_this_sequence = @win_trades.to_i * @amount.to_i
+    losing_losses_on_this_sequence = @lose_trades.to_i * @amount.to_i
+    total_pandl = winning_profit_on_this_sequence - losing_losses_on_this_sequence
+    p winning_profit_on_this_sequence 
+    p @win_trades
+    p @amount
+
+    puts "With your #{@trades} trades, you won #{@win_trades} times. And made $#{@amount} each winning trade,"
+    puts "totalling #{winning_profit_on_this_sequence} in winners and #{losing_losses_on_this_sequence} in losses."
+    puts "So your total P&L is #{total_pandl}"
   end
 
   def generate_all_trades
@@ -78,6 +88,7 @@ class Forex
     get_user_data
     define_fixed_wins
     generate_all_trades
+    profits
   end
 end
 
