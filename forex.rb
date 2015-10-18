@@ -57,11 +57,17 @@ class Forex
   end
 
   def generate_all_trades
+    # N! / (N-R)!   <- Where N is total trades, and R is the possibilities of results which is 2 (either a win or loss)
+    # 3! / (3-2)!  --> 3*2 / 1 --> 6
+    # 1, 1, 0. || 1,0,1 || 0,1,1
+    # ---- These formulas don't work but we'll need a permutation formula eventually ---- 
+
+    number_of_possible_trades = 100 # this where the permutation formula goes
     @lose_trades = @trades - @win_trades
     puts @lose_trades
     wins_and_losses = trade_array
     puts "Here's your wins and losses #{p wins_and_losses}"
-    puts "There will be #{@trades} amount of permutations"  # This needs to be factoral ...not a predetermined number.
+    puts "There will be #{@trades} amount of permutations"  # This needs to be permutation calculation ...not a predetermined number.
     # Here we need to deal with every permutation possible of the percentage wins/losses he might have. 
   end
 
