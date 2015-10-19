@@ -26,7 +26,7 @@ class Forex
     puts "You may want to increase your size if you're winning, meaning you're looking at an anti-martingale system. So:"
     puts "If you have a winning trade, would you like your next position size to be based on a percentage or a fixed amount more or less?"
     puts "(F)ixed or (P)ercentage"
-    win_fix_or_perc = gets.chomp.downcase
+    @win_fix_or_perc = gets.chomp.downcase
     puts "What amount more or less would it be? (-100 to infinite for percentage or any infinite for fixed)"
     @winner_change = gets.chomp.to_i
     puts "If you have a LOSING trade, would you like your next position size to be based on a percentage or a fixed amount more or less?"
@@ -52,7 +52,9 @@ class Forex
 
       # Figure up the next position size 
       if current_sequence[x] == 1
+        puts "here"
         if @win_fix_or_perc == "f" 
+          puts "inside f"
           @amount = @winner_change + @amount
         end
       end
