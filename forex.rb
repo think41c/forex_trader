@@ -56,7 +56,7 @@ class Forex
         puts "here"
         if @win_fix_or_perc == "f" 
           puts "inside f"
-          @amount = @winner_change + amount_to_trade_for_this_sequence
+          amount_to_trade_for_this_sequence += @winner_change
         end
       end
 
