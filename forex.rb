@@ -53,11 +53,17 @@ class Forex
 
       # Figure up the next position size 
       if current_sequence[x] == 1
-        puts "here"
+        puts "Winner stuff here"
         if @win_fix_or_perc == "f" 
           puts "inside f"
           amount_to_trade_for_this_sequence += @winner_change
         end
+      end
+
+      puts "#{current_sequence[x]} and #{current_sequence[x-1]}"
+      if (current_sequence[x] == -1) && (current_sequence[x-1] == 1)
+        puts "Lost w/ prior trade being a winner"
+        amount_to_trade_for_this_sequence = @amount
       end
 
       puts "****"
