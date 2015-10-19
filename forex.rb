@@ -46,7 +46,9 @@ class Forex
   # This calculates the amount you would have won/lost for each potential win/loss trade combination possibility.
 
     current_sequence.each do |x| 
-      
+      puts "Looking at this trade -> #{current_sequence[x]}"
+      puts "You made #{current_sequence[x] * @amount}"
+      puts "****"
     end
 
     winning_profit_on_this_sequence = @win_trades.to_i * @amount.to_i
@@ -89,7 +91,7 @@ class Forex
     win_spot = @lose_trades
     lose_spot = 0
     @lose_trades.times do 
-      all_trades[lose_spot] = 0
+      all_trades[lose_spot] = -1
       lose_spot += 1 
     end
 
@@ -106,7 +108,6 @@ class Forex
     get_user_data
     define_fixed_wins
     generate_all_trades
-    profits
   end
 end
 
