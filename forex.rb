@@ -26,7 +26,7 @@ class Forex
     puts "You may want to increase your size if you're winning, meaning you're looking at an anti-martingale system. So:"
     puts "If you have a winning trade, would you like your next position size to be based on a percentage or a fixed amount more or less?"
     puts "(F)ixed or (P)ercentage"
-    win_fix_or_perc = gets.chomp
+    win_fix_or_perc = gets.chomp.downcase
     puts "What amount more or less would it be? (-100 to infinite for percentage or any infinite for fixed)"
     @winner_change = gets.chomp.to_i
     puts "If you have a LOSING trade, would you like your next position size to be based on a percentage or a fixed amount more or less?"
@@ -44,11 +44,19 @@ class Forex
   def profits(current_sequence)  # current_sequence is the wins_and_losses genearted from generate_all_trades
   # Takes in current_sequence, an array of 0s and 1s indicating wins and losses and calculates P&L for each.
   # This calculates the amount you would have won/lost for each potential win/loss trade combination possibility.
-
+    the_profits_for_each_sequence = []
     current_sequence.each do |x| 
       puts "Looking at this trade -> #{current_sequence[x]}"
       this_trades_pandl = current_sequence[x] * @amount
       puts "You made #{this_trades_pandl}"
+
+      # Figure up the next position size 
+      if current_sequence[x] == 1
+        if win_fix_or_perc == "f" 
+          @amount = @winner_change + @amount
+        end
+      end
+      
       puts "****"
       the_profits_for_each_sequence << this_trades_pandl
     end
