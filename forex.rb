@@ -46,7 +46,7 @@ class Forex
   # This calculates the amount you would have won/lost for each potential win/loss trade combination possibility.
     amount_to_trade_for_this_sequence = @amount
     the_profits_for_each_sequence = []
-    current_sequence.each do |x| 
+    current_sequence.each_with_index do |x, index| 
       puts "Looking at this trade -> #{current_sequence[x]}"
       this_trades_pandl = current_sequence[x] * amount_to_trade_for_this_sequence
       puts "You made #{this_trades_pandl}"
@@ -59,7 +59,7 @@ class Forex
           amount_to_trade_for_this_sequence += @winner_change
         end
       end
-
+      puts "#{index}  <---- is the x we're on"
       puts "#{current_sequence[x]} and #{current_sequence[x-1]}"
       if (current_sequence[x] == -1) && (current_sequence[x-1] == 1)
         puts "Lost w/ prior trade being a winner"
