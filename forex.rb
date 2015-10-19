@@ -52,11 +52,11 @@ class Forex
 
       # Figure up the next position size 
       if current_sequence[x] == 1
-        if win_fix_or_perc == "f" 
+        if @win_fix_or_perc == "f" 
           @amount = @winner_change + @amount
         end
       end
-      
+
       puts "****"
       the_profits_for_each_sequence << this_trades_pandl
     end
