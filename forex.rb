@@ -52,6 +52,8 @@ class Forex
       puts "****"
       the_profits_for_each_sequence << this_trades_pandl
     end
+    puts "The total profits for this sequence was #{the_profits_for_each_sequence}"
+    puts "The total profits for this sequence was #{the_profits_for_each_sequence.inject(:+)}"
   end
 
   def generate_all_trades
@@ -76,8 +78,8 @@ class Forex
     # This is only generated one time. It's the master array we will shuffle around.
     # This takes winning trades and places them in an array as a 1, and losing trades as a 0.
     all_trades = Array.new(@trades)
-    # The win_spot is the location in the array where a winning trade will reside initially before shuffled around.
-    win_spot = @lose_trades
+  
+    win_spot = @lose_trades   # The win_spot is location in array where winning trade resides initially before shuffled around.
     lose_spot = 0
     @lose_trades.times do 
       all_trades[lose_spot] = -1
