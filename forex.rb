@@ -47,22 +47,11 @@ class Forex
 
     current_sequence.each do |x| 
       puts "Looking at this trade -> #{current_sequence[x]}"
-      puts "You made #{current_sequence[x] * @amount}"
+      this_trades_pandl = current_sequence[x] * @amount
+      puts "You made #{this_trades_pandl}"
       puts "****"
+      the_profits_for_each_sequence << this_trades_pandl
     end
-
-    winning_profit_on_this_sequence = @win_trades.to_i * @amount.to_i
-    losing_losses_on_this_sequence = @lose_trades.to_i * @amount.to_i
-    total_pandl = winning_profit_on_this_sequence - losing_losses_on_this_sequence
-    the_profits_for_each_sequence = []
-    p winning_profit_on_this_sequence 
-    p @win_trades
-    p @amount
-
-    puts "With your #{@trades} trades, you won #{@win_trades} times. And made $#{@amount} each winning trade,"
-    puts "totalling #{winning_profit_on_this_sequence} in winners and #{losing_losses_on_this_sequence} in losses."
-    puts "So your total P&L is #{total_pandl}"
-    the_profits_for_each_sequence << total_pandl
   end
 
   def generate_all_trades
