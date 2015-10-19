@@ -44,10 +44,11 @@ class Forex
   def profits(current_sequence)  # current_sequence is the wins_and_losses genearted from generate_all_trades
   # Takes in current_sequence, an array of 0s and 1s indicating wins and losses and calculates P&L for each.
   # This calculates the amount you would have won/lost for each potential win/loss trade combination possibility.
+    amount_to_trade_for_this_sequence = @amount
     the_profits_for_each_sequence = []
     current_sequence.each do |x| 
       puts "Looking at this trade -> #{current_sequence[x]}"
-      this_trades_pandl = current_sequence[x] * @amount
+      this_trades_pandl = current_sequence[x] * amount_to_trade_for_this_sequence
       puts "You made #{this_trades_pandl}"
 
       # Figure up the next position size 
@@ -55,7 +56,7 @@ class Forex
         puts "here"
         if @win_fix_or_perc == "f" 
           puts "inside f"
-          @amount = @winner_change + @amount
+          @amount = @winner_change + amount_to_trade_for_this_sequence
         end
       end
 
