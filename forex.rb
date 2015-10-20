@@ -10,7 +10,7 @@ class Forex
     @win_trades = @win_trades.to_i
   end
 
-  def profits(current_sequence)  # current_sequence is the wins_and_losses genearted from generate_all_trades
+  def profits(current_sequence)  # current_sequence is the trade_array genearted from generate_all_trades
   # Takes in current_sequence, an array of 0s and 1s indicating wins and losses and calculates P&L for each.
   # This calculates the amount you would have won/lost for each potential win/loss trade combination possibility.
     amount_to_trade_for_this_sequence = @amount
@@ -50,17 +50,14 @@ class Forex
 
     number_of_possible_trades = 100 # this where the permutation formula goes
     @lose_trades = @trades - @win_trades
-    puts @lose_trades
-    wins_and_losses = trade_array
-    puts "Here's your wins and losses #{p wins_and_losses}"
-    puts "There will be #{@trades} amount of permutations"  # This needs to be permutation calculation ...not a predetermined number.
+    trade_array = trade_array
+    puts "Here's your wins and losses #{p trade_array}"
+    puts "There will be #{@number_of_possible_trades} amount of permutations"  # This needs to be permutation calculation ...not a predetermined number.
     # Here we need to deal with every permutation possible of the percentage wins/losses he might have. 
-    profits(wins_and_losses)
+    profits(trade_array)
     # Rearrange the array, and take that array and give it to the 'profits' method to determine what the profits are.
     # Return the answer into an array. 
   end
-
-
 
   def menu
     intro
