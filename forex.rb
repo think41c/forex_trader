@@ -5,6 +5,91 @@ class Forex
     menu
   end
 
+  def define_fixed_wins
+    @win_trades = (@percentage.to_f / 100) * @trades
+    @win_trades = @win_trades.to_i
+  end
+
+  def profits(current_sequence)  # current_sequence is the wins_and_losses genearted from generate_all_trades
+  # Takes in current_sequence, an array of 0s and 1s indicating wins and losses and calculates P&L for each.
+  # This calculates the amount you would have won/lost for each potential win/loss trade combination possibility.
+    amount_to_trade_for_this_sequence = @amount
+    the_profits_for_each_sequence = []
+    current_sequence.each_with_index do |x, index| 
+      puts "Looking at this trade -> #{current_sequence[x]}"
+      this_trades_pandl = current_sequence[x] * amount_to_trade_for_this_sequence
+      puts "You made #{this_trades_pandl}"
+
+      # Figure up the next position size 
+      if current_sequence[x] == 1
+        puts "Winner stuff here"
+        if @win_fix_or_perc == "f" 
+          puts "inside f"
+          amount_to_trade_for_this_sequence += @winner_change
+        end
+      end
+      puts "#{index}  <---- is the x we're on"
+      puts "#{current_sequence[x]} and #{current_sequence[x-1]}"
+      if (current_sequence[x] == -1) && (current_sequence[index-1] == 1)
+        puts "Lost w/ prior trade being a winner"
+        amount_to_trade_for_this_sequence = @amount
+      end
+
+      puts "****"
+      the_profits_for_each_sequence << this_trades_pandl
+    end
+    puts "The total profits for this sequence was #{the_profits_for_each_sequence}"
+    puts "The total profits for this sequence was #{the_profits_for_each_sequence.inject(:+)}"
+  end
+
+  def generate_all_trades
+    # N! / (N-R)!   <- Where N is total trades, and R is the possibilities of results which is 2 (either a win or loss)
+    # 3! / (3-2)!  --> 3*2 / 1 --> 6
+    # 1, 1, 0. || 1,0,1 || 0,1,1
+    # ---- These formulas don't work but we'll need a permutation formula eventually ---- 
+
+    number_of_possible_trades = 100 # this where the permutation formula goes
+    @lose_trades = @trades - @win_trades
+    puts @lose_trades
+    wins_and_losses = trade_array
+    puts "Here's your wins and losses #{p wins_and_losses}"
+    puts "There will be #{@trades} amount of permutations"  # This needs to be permutation calculation ...not a predetermined number.
+    # Here we need to deal with every permutation possible of the percentage wins/losses he might have. 
+    profits(wins_and_losses)
+    # Rearrange the array, and take that array and give it to the 'profits' method to determine what the profits are.
+    # Return the answer into an array. 
+  end
+
+
+
+  def menu
+    intro
+    get_user_data
+    define_fixed_wins
+    generate_all_trades
+  end
+
+private    # Everything below this shouldn't have to be altered
+
+  def trade_array
+    # This is only generated one time. It's the master array we will shuffle around.
+    # This takes winning trades and places them in an array as a 1, and losing trades as a 0.
+    all_trades = Array.new(@trades)
+  
+    win_spot = @lose_trades   # The win_spot is location in array where winning trade resides initially before shuffled around.
+    lose_spot = 0
+    @lose_trades.times do 
+      all_trades[lose_spot] = -1
+      lose_spot += 1 
+    end
+
+    @win_trades.times do
+      all_trades[win_spot] = 1
+      win_spot += 1
+    end
+    all_trades
+  end
+
   def intro 
     puts "This program goes through every possible combination of trades for you."
     puts "You can enter your probability of a successful trade, say 50%, and the program will simulate"
@@ -36,87 +121,8 @@ class Forex
     @loser_change = gets.chomp.to_i
   end
 
-  def define_fixed_wins
-    @win_trades = (@percentage.to_f / 100) * @trades
-    @win_trades = @win_trades.to_i
-  end
-
-  def profits(current_sequence)  # current_sequence is the wins_and_losses genearted from generate_all_trades
-  # Takes in current_sequence, an array of 0s and 1s indicating wins and losses and calculates P&L for each.
-  # This calculates the amount you would have won/lost for each potential win/loss trade combination possibility.
-    amount_to_trade_for_this_sequence = @amount
-    the_profits_for_each_sequence = []
-    current_sequence.each_with_index do |x, index| 
-      puts "Looking at this trade -> #{current_sequence[x]}"
-      this_trades_pandl = current_sequence[x] * amount_to_trade_for_this_sequence
-      puts "You made #{this_trades_pandl}"
-
-      # Figure up the next position size 
-      if current_sequence[x] == 1
-        puts "Winner stuff here"
-        if @win_fix_or_perc == "f" 
-          puts "inside f"
-          amount_to_trade_for_this_sequence += @winner_change
-        end
-      end
-      puts "#{index}  <---- is the x we're on"
-      puts "#{current_sequence[x]} and #{current_sequence[x-1]}"
-      if (current_sequence[x] == -1) && (current_sequence[x-1] == 1)
-        puts "Lost w/ prior trade being a winner"
-        amount_to_trade_for_this_sequence = @amount
-      end
-
-      puts "****"
-      the_profits_for_each_sequence << this_trades_pandl
-    end
-    puts "The total profits for this sequence was #{the_profits_for_each_sequence}"
-    puts "The total profits for this sequence was #{the_profits_for_each_sequence.inject(:+)}"
-  end
-
-  def generate_all_trades
-    # N! / (N-R)!   <- Where N is total trades, and R is the possibilities of results which is 2 (either a win or loss)
-    # 3! / (3-2)!  --> 3*2 / 1 --> 6
-    # 1, 1, 0. || 1,0,1 || 0,1,1
-    # ---- These formulas don't work but we'll need a permutation formula eventually ---- 
-
-    number_of_possible_trades = 100 # this where the permutation formula goes
-    @lose_trades = @trades - @win_trades
-    puts @lose_trades
-    wins_and_losses = trade_array
-    puts "Here's your wins and losses #{p wins_and_losses}"
-    puts "There will be #{@trades} amount of permutations"  # This needs to be permutation calculation ...not a predetermined number.
-    # Here we need to deal with every permutation possible of the percentage wins/losses he might have. 
-    profits(wins_and_losses)
-    # Rearrange the array, and take that array and give it to the 'profits' method to determine what the profits are.
-    # Return the answer into an array. 
-  end
-
-  def trade_array
-    # This is only generated one time. It's the master array we will shuffle around.
-    # This takes winning trades and places them in an array as a 1, and losing trades as a 0.
-    all_trades = Array.new(@trades)
-  
-    win_spot = @lose_trades   # The win_spot is location in array where winning trade resides initially before shuffled around.
-    lose_spot = 0
-    @lose_trades.times do 
-      all_trades[lose_spot] = -1
-      lose_spot += 1 
-    end
-
-    @win_trades.times do
-      all_trades[win_spot] = 1
-      win_spot += 1
-    end
-    all_trades
-  end
 
 
-  def menu
-    intro
-    get_user_data
-    define_fixed_wins
-    generate_all_trades
-  end
 end
 
 a = Forex.new
