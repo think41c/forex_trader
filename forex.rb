@@ -50,11 +50,11 @@ class Forex
 
     number_of_possible_trades = 100 # this where the permutation formula goes
     @lose_trades = @trades - @win_trades
-    trade_array = trade_array
-    puts "Here's your wins and losses #{p trade_array}"
-    puts "There will be #{@number_of_possible_trades} amount of permutations"  # This needs to be permutation calculation ...not a predetermined number.
+    full_trade_array = trade_array
+    puts "Here's your wins and losses #{p full_trade_array}"
+    puts "There will be #{number_of_possible_trades} amount of permutations"  # This needs to be permutation calculation ...not a predetermined number.
     # Here we need to deal with every permutation possible of the percentage wins/losses he might have. 
-    profits(trade_array)
+    profits(full_trade_array)
     # Rearrange the array, and take that array and give it to the 'profits' method to determine what the profits are.
     # Return the answer into an array. 
   end
