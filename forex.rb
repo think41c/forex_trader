@@ -5,10 +5,6 @@ class Forex
     menu
   end
 
-  def define_fixed_wins
-    @win_trades = (@percentage.to_f / 100) * @trades
-    @win_trades = @win_trades.to_i
-  end
 
   def profits(current_sequence)  # current_sequence is the trade_array genearted from generate_all_trades
   # Takes in current_sequence, an array of 0s and 1s indicating wins and losses and calculates P&L for each.
@@ -43,6 +39,7 @@ class Forex
   end
 
   def generate_all_trades
+    puts "Just got to generate_all_trades"
     # N! / (N-R)!   <- Where N is total trades, and R is the possibilities of results which is 2 (either a win or loss)
     # 3! / (3-2)!  --> 3*2 / 1 --> 6
     # 1, 1, 0. || 1,0,1 || 0,1,1
@@ -85,6 +82,11 @@ private    # Everything below this shouldn't have to be altered
       win_spot += 1
     end
     all_trades
+  end
+
+  def define_fixed_wins
+    @win_trades = (@percentage.to_f / 100) * @trades
+    @win_trades = @win_trades.to_i
   end
 
   def intro 
