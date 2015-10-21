@@ -13,7 +13,7 @@ class Forex
     the_profits_for_each_sequence     = []
 
     current_sequence.each_with_index do |win_or_lose, index| 
-      puts "Looking at this trade -> #{current_sequence[win_or_lose]}"
+      puts "Looking at this trade -> #{current_sequence[index]}"
       this_trades_pandl = current_sequence[index] * amount_to_trade_for_this_sequence  # -1 or 1 * the amount traded
       puts "You made/lost #{this_trades_pandl}"
       
@@ -25,9 +25,11 @@ class Forex
         end
       end
 
-      # Figure 
-        if current_sequence[index] == -1
-          puts "Loser stuff here"
+      # Figure size for losers
+      if current_sequence[index] == -1 
+        if @lose_fix_or_perc == "s"   # This should start over the amount to default beginning trade size
+          amount_to_trade_for_this_sequence = @amount
+          puts "Loser stuff here - going back to trade only #{@amount}"
         end
       end
 
@@ -119,7 +121,7 @@ private    # Everything below this shouldn't have to be altered
     @winner_change = gets.chomp.to_i
     puts "If you have a LOSING trade, would you like your next position size to be based on a percentage or a fixed amount more or less?"
     puts "(F)ixed or (P)ercentage or (S)tarting default amount"
-    @lose_fix_or_perc = gets.chomp
+    @lose_fix_or_perc = gets.chomp.downcase
     puts "What amount more or less would it be? (-100 to infinite for percentage or any infinite for fixed)"
     @loser_change = gets.chomp.to_i
   end
