@@ -26,16 +26,18 @@ class Forex
       end
 
       # Figure size for losers
+      puts "What's current_sequence[index] == #{current_sequence[index]}"
       if current_sequence[index] == -1 
         if @lose_fix_or_perc == "s"   # This should start over the amount to default beginning trade size
           amount_to_trade_for_this_sequence = @amount
           puts "Loser stuff here - going back to trade only #{@amount}"
         end
-      end
 
-      if (current_sequence[win_or_lose] == -1) && (current_sequence[index-1] == 1)
-        puts "Lost w/ prior trade being a winner"
-        amount_to_trade_for_this_sequence = @amount
+        if @lose_fix_or_perc == "f"
+          amount_to_trade_for_this_sequence += @loser_change
+          puts "Loser - trading now #{@amount_to_trade_for_this_sequence}"
+        end
+
       end
 
       puts "****"
@@ -57,7 +59,8 @@ class Forex
     puts "Here's your wins and losses #{full_trade_array}"
     puts "There will be #{number_of_possible_trades} amount of permutations"  # This needs to be permutation calculation ...not a predetermined number.
     # Here we need to deal with every permutation possible of the percentage wins/losses he might have. 
-    profits(full_trade_array)
+    # profits(full_trade_array)
+    profits([1,-1,1,1,1,-1,-1,1])
     # Rearrange the array, and take that array and give it to the 'profits' method to determine what the profits are.
     # Return the answer into an array. 
   end
@@ -122,7 +125,7 @@ private    # Everything below this shouldn't have to be altered
     puts "If you have a LOSING trade, would you like your next position size to be based on a percentage or a fixed amount more or less?"
     puts "(F)ixed or (P)ercentage or (S)tarting default amount"
     @lose_fix_or_perc = gets.chomp.downcase
-    puts "What amount more or less would it be? (-100 to infinite for percentage or any infinite for fixed)"
+    puts "If you picked F or P. What amount more or less would it be? (-100 to infinite for percentage or any infinite for fixed)"
     @loser_change = gets.chomp.to_i
   end
 
