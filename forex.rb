@@ -10,23 +10,28 @@ class Forex
   # Takes in current_sequence, an array of 0s and 1s indicating wins and losses and calculates P&L for each.
   # This calculates the amount you would have won/lost for each potential win/loss trade combination possibility.
     amount_to_trade_for_this_sequence = @amount
-    the_profits_for_each_sequence = []
-    current_sequence.each_with_index do |x, index| 
-      puts "Looking at this trade -> #{current_sequence[x]}"
-      this_trades_pandl = current_sequence[x] * amount_to_trade_for_this_sequence
+    the_profits_for_each_sequence     = []
+
+    current_sequence.each_with_index do |win_or_lose, index| 
+      puts "Looking at this trade -> #{current_sequence[win_or_lose]}"
+      this_trades_pandl = current_sequence[index] * amount_to_trade_for_this_sequence  # -1 or 1 * the amount traded
       puts "You made #{this_trades_pandl}"
 
       # Figure up the next position size 
-      if current_sequence[x] == 1
+      if current_sequence[index] == 1
         puts "Winner stuff here"
         if @win_fix_or_perc == "f" 
           puts "inside f"
           amount_to_trade_for_this_sequence += @winner_change
         end
       end
-      puts "#{index}  <---- is the x we're on"
-      puts "x=#{x}, #{current_sequence[x]}, and #{current_sequence[x-1]}"
-      if (current_sequence[x] == -1) && (current_sequence[index-1] == 1)
+
+      if current_sequence[index] == -1
+        puts "Loser stuff here"
+      
+      end
+
+      if (current_sequence[win_or_lose] == -1) && (current_sequence[index-1] == 1)
         puts "Lost w/ prior trade being a winner"
         amount_to_trade_for_this_sequence = @amount
       end
