@@ -15,20 +15,20 @@ class Forex
     current_sequence.each_with_index do |win_or_lose, index| 
       puts "Looking at this trade -> #{current_sequence[win_or_lose]}"
       this_trades_pandl = current_sequence[index] * amount_to_trade_for_this_sequence  # -1 or 1 * the amount traded
-      puts "You made #{this_trades_pandl}"
-
-      # Figure up the next position size 
-      if current_sequence[index] == 1
-        puts "Winner stuff here"
-        if @win_fix_or_perc == "f" 
-          puts "inside f"
+      puts "You made/lost #{this_trades_pandl}"
+      
+      # Figure up the next position size if you won
+      if @win_fix_or_perc == "f" 
+        if current_sequence[index] == 1
+          puts "Winner stuff here"
           amount_to_trade_for_this_sequence += @winner_change
         end
       end
 
-      if current_sequence[index] == -1
-        puts "Loser stuff here"
-      
+      # Figure 
+        if current_sequence[index] == -1
+          puts "Loser stuff here"
+        end
       end
 
       if (current_sequence[win_or_lose] == -1) && (current_sequence[index-1] == 1)
@@ -118,7 +118,7 @@ private    # Everything below this shouldn't have to be altered
     puts "What amount more or less would it be? (-100 to infinite for percentage or any infinite for fixed)"
     @winner_change = gets.chomp.to_i
     puts "If you have a LOSING trade, would you like your next position size to be based on a percentage or a fixed amount more or less?"
-    puts "(F)ixed or (P)ercentage"
+    puts "(F)ixed or (P)ercentage or (S)tarting default amount"
     @lose_fix_or_perc = gets.chomp
     puts "What amount more or less would it be? (-100 to infinite for percentage or any infinite for fixed)"
     @loser_change = gets.chomp.to_i
