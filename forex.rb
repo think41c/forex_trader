@@ -25,7 +25,7 @@ class Forex
         end
       end
       puts "#{index}  <---- is the x we're on"
-      puts "#{current_sequence[x]} and #{current_sequence[x-1]}"
+      puts "x=#{x}, #{current_sequence[x]}, and #{current_sequence[x-1]}"
       if (current_sequence[x] == -1) && (current_sequence[index-1] == 1)
         puts "Lost w/ prior trade being a winner"
         amount_to_trade_for_this_sequence = @amount
@@ -39,7 +39,6 @@ class Forex
   end
 
   def generate_all_trades
-    puts "Just got to generate_all_trades"
     # N! / (N-R)!   <- Where N is total trades, and R is the possibilities of results which is 2 (either a win or loss)
     # 3! / (3-2)!  --> 3*2 / 1 --> 6
     # 1, 1, 0. || 1,0,1 || 0,1,1
@@ -47,10 +46,8 @@ class Forex
 
     number_of_possible_trades = 100 # this where the permutation formula goes
     @lose_trades = @trades - @win_trades
-    puts "Just after @lose trades"
     full_trade_array = trade_array
-    puts "After trade array is set"
-    puts "Here's your wins and losses #{p full_trade_array}"
+    puts "Here's your wins and losses #{full_trade_array}"
     puts "There will be #{number_of_possible_trades} amount of permutations"  # This needs to be permutation calculation ...not a predetermined number.
     # Here we need to deal with every permutation possible of the percentage wins/losses he might have. 
     profits(full_trade_array)
