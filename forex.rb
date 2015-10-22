@@ -45,6 +45,7 @@ class Forex
     end
     puts "The total profits for this sequence was #{the_profits_for_each_sequence}"
     puts "The total profits for this sequence was #{the_profits_for_each_sequence.inject(:+)}"
+    the_profits_for_each_sequence.inject(:+)
   end
 
   def generate_all_trades
@@ -60,11 +61,14 @@ class Forex
     puts "There will be #{number_of_possible_trades} amount of permutations"  # This needs to be permutation calculation ...not a predetermined number.
     # Here we need to deal with every permutation possible of the percentage wins/losses he might have. 
     # profits(full_trade_array)   #  <--- Use this normally
-    profits([-1,-1,-1,1,1,-1,-1,1,1,1]) #  <--- this is a stubbed array for 50% wins for 10 trades
-    profits([-1,1,-1,1,1,-1,-1,-1,1,1]) #  <--- this is a stubbed array for 50% wins for 10 trades
-    profits([-1,-1,-1,1,1,1,-1,-1,1,1]) #  <--- this is a stubbed array for 50% wins for 10 trades
-    profits([-1,-1,-1,1,1,1,-1,1,1,-1]) #  <--- this is a stubbed array for 50% wins for 10 trades
-    profits([-1,1,1,1,1,-1,-1,1,-1,-1]) #  <--- this is a stubbed array for 50% wins for 10 trades
+    the_total_profits_of_all_sequences = []
+    the_total_profits_of_all_sequences << profits([-1,-1,-1,1,1,-1,-1,1,1,1]) #  <--- this is a stubbed array for 50% wins for 10 trades
+    the_total_profits_of_all_sequences << profits([-1,1,-1,1,1,-1,-1,-1,1,1]) #  <--- this is a stubbed array for 50% wins for 10 trades
+    the_total_profits_of_all_sequences << profits([-1,-1,-1,1,1,1,-1,-1,1,1]) #  <--- this is a stubbed array for 50% wins for 10 trades
+    the_total_profits_of_all_sequences << profits([-1,-1,-1,1,1,1,-1,1,1,-1]) #  <--- this is a stubbed array for 50% wins for 10 trades
+    the_total_profits_of_all_sequences << profits([-1,1,1,1,1,-1,-1,1,-1,-1]) #  <--- this is a stubbed array for 50% wins for 10 trades
+    the_total_profits_of_all_sequences << profits([-1,-1,-1,-1,-1,1,1,1,1,1]) #  <--- this is a stubbed array for 50% wins for 10 trades
+    puts the_total_profits_of_all_sequences.inject(:+)
     # Rearrange the array, and take that array and give it to the 'profits' method to determine what the profits are.
     # Return the answer into an array. 
   end
