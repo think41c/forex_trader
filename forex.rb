@@ -1,3 +1,5 @@
+# Does not currently operate with percentages. Fixed amounts only. And martingale only currently.
+
 class Forex
   
   def initialize 
@@ -67,6 +69,7 @@ class Forex
     the_total_profits_of_all_sequences << profits([-1,-1,-1,1,1,1,-1,-1,1,1]) #  <--- this is a stubbed array for 50% wins for 10 trades
     the_total_profits_of_all_sequences << profits([-1,-1,-1,1,1,1,-1,1,1,-1]) #  <--- this is a stubbed array for 50% wins for 10 trades
     the_total_profits_of_all_sequences << profits([-1,1,1,1,1,-1,-1,1,-1,-1]) #  <--- this is a stubbed array for 50% wins for 10 trades
+    the_total_profits_of_all_sequences << profits([-1,-1,-1,-1,-1,1,1,1,1,1]) #  <--- this is a stubbed array for 50% wins for 10 trades
     the_total_profits_of_all_sequences << profits([-1,-1,-1,-1,-1,1,1,1,1,1]) #  <--- this is a stubbed array for 50% wins for 10 trades
     puts the_total_profits_of_all_sequences.inject(:+)
     # Rearrange the array, and take that array and give it to the 'profits' method to determine what the profits are.
