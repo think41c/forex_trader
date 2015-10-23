@@ -1,8 +1,10 @@
 # Does not currently operate with percentages. Fixed amounts only. And martingale only currently.
+require './trade_creator.rb'
 
 class Forex
   
   def initialize 
+    get_sequences = TradeCreator.new
     puts "Welcome to Forex trader"
     menu
   end

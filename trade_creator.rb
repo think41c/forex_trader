@@ -2,7 +2,7 @@ class TradeCreator
 	# Just use probabilities to calculate the win or loss for that trade. 
 	def trade_gen
 		answers = []
-		10.times do 
+		10000.times do 
 			a = rand(1..100)
 			if a < 50    # Percentage of winning trades.
 				trade = 1
