@@ -30,6 +30,6 @@ class TradeCreator
 		puts "The percentage of winners is #{percentage.to_i}%"
 	end
 end
-a = TradeCreator.new
-a.trade_gen
-a.trade_gen
+# a = TradeCreator.new
+# a.trade_gen
+# a.trade_gen
