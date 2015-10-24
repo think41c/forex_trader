@@ -15,7 +15,9 @@ class Forex
   # This calculates the amount you would have won/lost for each potential win/loss trade combination possibility.
     amount_to_trade_for_this_sequence = @amount
     the_profits_for_each_sequence     = []
-
+    puts "Running the TradeCreator"
+    get_sequences.trade_gen
+    puts "Running the TradeCreator"
     current_sequence.each_with_index do |win_or_lose, index| 
       puts "Looking at this trade -> #{current_sequence[index]}"
       this_trades_pandl = current_sequence[index] * amount_to_trade_for_this_sequence  # -1 or 1 * the amount traded
