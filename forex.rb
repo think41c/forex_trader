@@ -4,7 +4,7 @@ require './trade_creator.rb'
 class Forex
   
   def initialize 
-    get_sequences = TradeCreator.new
+    @get_sequences = TradeCreator.new
     puts "Welcome to Forex trader"
     menu
   end
@@ -16,7 +16,7 @@ class Forex
     amount_to_trade_for_this_sequence = @amount
     the_profits_for_each_sequence     = []
     puts "Running the TradeCreator"
-    get_sequences.trade_gen
+    @get_sequences.trade_gen
     puts "Running the TradeCreator"
     current_sequence.each_with_index do |win_or_lose, index| 
       puts "Looking at this trade -> #{current_sequence[index]}"
