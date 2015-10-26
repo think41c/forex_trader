@@ -11,6 +11,7 @@ class Probability
 
   def menu
   	puts "Probability trader takes 10,000 trades based on your percentage."
+  	@get_sequences.trade_gen(50)
   end
 
 end
