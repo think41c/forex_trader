@@ -15,6 +15,7 @@ class TradeCreator
 		p answers
 		puts "*********************"
 		verify_percentage(answers)
+		answers
 	end
 
 	def verify_percentage(answers)
