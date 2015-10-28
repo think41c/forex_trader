@@ -11,7 +11,9 @@ class TradeCreator
 			end
 			answers << trade
 		end
-		puts answers
+		puts "****DISPLAYING answers"
+		p answers
+		puts "*********************"
 		verify_percentage(answers)
 	end
 
