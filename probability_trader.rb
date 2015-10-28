@@ -17,7 +17,7 @@ class Probability
 
   def get_user_data
   	puts "What percentage of the time do you win?"
-  	user_percent_win = gets.chomp 
+  	user_percent_win = gets.chomp.to_i
   	user_percent_win
   end
 
