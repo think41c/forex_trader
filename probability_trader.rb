@@ -30,20 +30,27 @@ class Probability
   end
 
   def trade_sizes(all_trades)
-  	new_size = starting_size
+  	new_size    = starting_size
+  	trade_saver = []
   	all_trades.each_with_index do |trade, index| 
-  		puts "heres the #{trade}"
+  		puts "Here's the #{trade}"
   		if trade == 1 
   			new_size *= 0.5
-  			puts "what's new size before trade minimum now #{new_size}"
-  			new_size = size_minimum(new_size)
-  			
+  			new_size  = size_minimum(new_size)
   		else
   			new_size *= 1.5
   		end
-  		puts "The new size is #{new_size.to_i}"
+  		new_size = new_size.to_i
+  		puts "The new size is #{new_size}"
+  		trade_saver << profit_loss(new_size)
   	end
+  	puts trade_saver
   end
+
+  def profit_loss(new_size)
+  	400
+  end
+
 
 end
 
