@@ -20,9 +20,28 @@ class Probability
   	user_percent_win = gets.chomp.to_i
   end
 
+  def starting_size # This can be user input later
+  	100
+  end
+
+  def size_minimum(new_size)
+  	new_size = 100 if new_size < starting_size 
+  	new_size
+  end
+
+
   def trade_sizes(all_trades)
+  	new_size = starting_size
   	all_trades.each_with_index do |trade, index| 
   		puts "heres the #{trade}"
+  		if trade == 1 
+  			new_size *= 0.1
+  			new_size = size_minimum(new_size)
+  			puts "what's new size now #{new_size}"
+  		else
+  			new_size *= 1.5
+  		end
+  		puts "The new size is #{new_size.to_i}"
   	end
   end
 
