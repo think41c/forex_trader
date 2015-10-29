@@ -2,7 +2,7 @@ class TradeCreator
 	# Just use probabilities to calculate the win or loss for that trade. 
 	def trade_gen(percentage_winners)
 		answers = []
-		100.times do 
+		10000.times do 
 			a = rand(1..100)
 			if a < percentage_winners    # Percentage of winning trades.
 				trade = 1
@@ -11,9 +11,9 @@ class TradeCreator
 			end
 			answers << trade
 		end
-		puts "****DISPLAYING answers"
-		p answers
-		puts "*********************"
+		# puts "****DISPLAYING answers****"
+		# p answers
+		# puts "**************************"
 		verify_percentage(answers)
 		answers
 	end
