@@ -14,8 +14,6 @@ class Probability
   	user_percent_win = get_user_data
   	all_trades = @get_sequences.trade_gen(user_percent_win)
   	puts "**** Here are the trades accessible ********"
-  	p all_trades
-
   end
 
   def get_user_data
@@ -23,7 +21,6 @@ class Probability
   	user_percent_win = gets.chomp.to_i
   	user_percent_win
   end
-
 end
 
 a = Probability.new
