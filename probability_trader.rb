@@ -11,15 +11,12 @@ class Probability
 
   def menu
   	puts "Probability trader takes 10,000 trades based on your percentage."
-  	user_percent_win = get_user_data
-  	all_trades = @get_sequences.trade_gen(user_percent_win)
-  	puts "**** Here are the trades accessible ********"
+  	all_trades = @get_sequences.trade_gen(get_user_data)
   end
 
   def get_user_data
   	puts "What percentage of the time do you win?"
   	user_percent_win = gets.chomp.to_i
-  	user_percent_win
   end
 end
 
