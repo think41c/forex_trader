@@ -25,7 +25,7 @@ class Probability
   end
 
   def maximum_size
-    100000
+    100000000
   end
 
   def size_minimum(new_size)
@@ -49,12 +49,13 @@ class Probability
   			new_size  = size_minimum(new_size)
   		else
         trade_saver << profit_loss(new_size, trade)
-  			new_size *= 1.5
+  			new_size *= 2
         new_size  = size_maximum(new_size)
   		end
   		new_size = new_size.to_i
   		puts "The new size is #{new_size}"
   	end
+    p trade_saver
   	puts trade_saver.inject(:+)
   end
 
