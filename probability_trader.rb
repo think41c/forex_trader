@@ -12,12 +12,20 @@ class Probability
   def menu
   	puts "Probability trader takes 10,000 trades based on your percentage."
   	all_trades = @get_sequences.trade_gen(get_user_data)
+  	trade_sizes(all_trades)
   end
 
   def get_user_data
   	puts "What percentage of the time do you win?"
   	user_percent_win = gets.chomp.to_i
   end
+
+  def trade_sizes(all_trades)
+  	all_trades.each_with_index do |trade, index| 
+  		puts "heres the #{trade}"
+  	end
+  end
+
 end
 
 a = Probability.new
