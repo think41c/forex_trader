@@ -25,19 +25,19 @@ class Probability
   end
 
   def size_minimum(new_size)
-  	new_size = 100 if new_size < starting_size 
+  	new_size = starting_size if new_size < starting_size 
   	new_size
   end
-
 
   def trade_sizes(all_trades)
   	new_size = starting_size
   	all_trades.each_with_index do |trade, index| 
   		puts "heres the #{trade}"
   		if trade == 1 
-  			new_size *= 0.1
+  			new_size *= 0.5
+  			puts "what's new size before trade minimum now #{new_size}"
   			new_size = size_minimum(new_size)
-  			puts "what's new size now #{new_size}"
+  			
   		else
   			new_size *= 1.5
   		end
