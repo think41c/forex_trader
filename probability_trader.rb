@@ -25,7 +25,7 @@ class Probability
   end
 
   def maximum_size
-    1000
+    1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   end
 
   def size_minimum(new_size)
@@ -45,25 +45,33 @@ class Probability
   		# puts "Here's the #{trade}"
   		if trade == 1 
         trade_saver << profit_loss(new_size, trade)
-  			new_size *= 0.75
+  			new_size *= 0.5
   			new_size  = size_minimum(new_size)
   		else
         trade_saver << profit_loss(new_size, trade)
-  			new_size *= 1.5
+  			new_size *= 2
         new_size  = size_maximum(new_size)
   		end
   		new_size = new_size.to_i
   		# puts "The new size is #{new_size}"
   	end
     # p trade_saver
-  	puts trade_saver.inject(:+)
+  	@test = 10
+    puts trade_saver.inject(:+)
+
   end
 
   def profit_loss(new_size, trade)
   	profit = new_size * trade
   	profit
   end
+
+  def post
+    puts @test
+  end
+
 end
 
 a = Probability.new
 a
+a.post
