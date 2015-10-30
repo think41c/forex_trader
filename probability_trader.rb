@@ -13,6 +13,17 @@ class Probability
   	puts "Probability trader takes 10,000 trades based on your percentage."
   	all_trades = @get_sequences.trade_gen(get_user_data)
   	trade_sizes(all_trades)
+    display_trades
+  end
+
+  def display_trades
+    puts "Would you like to see all trades? (Y)es, or (N)o?"
+    display = gets.chomp.downcase
+    if display == "y" 
+      post
+    else
+      puts "You didn't enter \"Y\" Ending now"
+    end
   end
 
   def get_user_data
@@ -48,7 +59,8 @@ class Probability
   			new_size  = size_minimum(new_size)
   		else
         @trade_saver << profit_loss(new_size, trade)
-  			new_size *= 2
+        # new_size *= 2
+  			new_size += 200
         new_size  = size_maximum(new_size)
   		end
   		new_size = new_size.to_i
@@ -71,4 +83,4 @@ end
 
 a = Probability.new
 a
-a.post
+# a.post
