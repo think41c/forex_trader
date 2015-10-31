@@ -1,6 +1,6 @@
 class TradeCreator
 	attr_reader :percentage
-	
+
 	# Just use probabilities to calculate the win or loss for that trade. 
 	def trade_gen(percentage_winners)
 		answers = []
@@ -29,7 +29,6 @@ class TradeCreator
 		end
 		total = win + lose
 		percentage = (win / total.to_f) * 100 
-		puts "The percentage of winners is #{percentage.to_i}%"
 		@percentage = percentage
 	end
 end

@@ -82,7 +82,7 @@ class Probability
       end
   	end
     puts "Your final P&L is #{@trade_saver.inject(:+)} and rich? #{riches}"
-    puts @get_sequences.percentage
+    puts "The actual percentage of winners was #{@get_sequences.percentage.to_i}"
   end
 
   def profit_loss(new_size, trade)
