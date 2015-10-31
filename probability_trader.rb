@@ -51,7 +51,7 @@ class Probability
   end
 
   def trade_sizes(all_trades)
-    riches = false
+    riches       = false
   	new_size     = starting_size
   	@trade_saver = []
   	all_trades.each_with_index do |trade, index| 
@@ -86,8 +86,16 @@ class Probability
   end
 
   def profit_loss(new_size, trade)
-  	profit = new_size * trade
-  	profit
+    ####### THIS IS THE ORIGINAL IF WINNERS AND LOSERS ARE THE SAME SIZE
+  	# profit = new_size * trade
+  	# profit
+    #####################################################################
+    if trade == 1
+      profit = new_size * trade
+    else
+      profit = (new_size*0.5) * trade  # Losers only lose half as much
+    end
+    profit
   end
 
   def post
@@ -99,4 +107,3 @@ end
 
 a = Probability.new
 a
-# a.post
