@@ -36,7 +36,7 @@ class Probability
   end
 
   def maximum_size
-    400
+    10000000000000
   end
 
   def size_minimum(new_size)
@@ -45,8 +45,8 @@ class Probability
   end
 
   def size_maximum(new_size)
-    # new_size = maximum_size if new_size > maximum_size
-    new_size = 100 if new_size > maximum_size
+    new_size = maximum_size if new_size > maximum_size
+    # new_size = 100 if new_size > maximum_size
     new_size
   end
 
@@ -56,18 +56,27 @@ class Probability
   	all_trades.each_with_index do |trade, index| 
   		if trade == 1 
         @trade_saver << profit_loss(new_size, trade)
-        # new_size *= 3.0
-  			new_size  += 100
+        
+        new_size *= 2.0
+  			# new_size  += 100
+
         # new_size  = size_minimum(new_size)   # USE IF YOURE DECREASiNG FOR WINNERS
   			new_size  = size_maximum(new_size)   # USE IF YOURE increasing FOR WINNERS
   		else
         @trade_saver << profit_loss(new_size, trade)
+        
         # new_size *= 2.00
-  			new_size  -= 100
+  			new_size  = 100
+        
         # new_size  = size_maximum(new_size)  
         new_size  = size_minimum(new_size)
   		end
   		new_size = new_size.to_i
+      puts "Your current overall P&L is #{@trade_saver.inject(:+)}"
+      if @trade_saver.inject(:+) > 100000
+        "You got rich"
+        # abort
+      end
   	end
     puts @trade_saver.inject(:+)
   end
