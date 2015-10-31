@@ -51,6 +51,7 @@ class Probability
   end
 
   def trade_sizes(all_trades)
+    riches = false
   	new_size     = starting_size
   	@trade_saver = []
   	all_trades.each_with_index do |trade, index| 
@@ -73,12 +74,13 @@ class Probability
   		end
   		new_size = new_size.to_i
       puts "Your current overall P&L is #{@trade_saver.inject(:+)}"
+
       if @trade_saver.inject(:+) > 100000
-        "You got rich"
+        riches = true
         # abort
       end
   	end
-    puts @trade_saver.inject(:+)
+    puts "Your final P&L is #{@trade_saver.inject(:+)} and rich? #{riches}"
   end
 
   def profit_loss(new_size, trade)
