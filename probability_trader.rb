@@ -36,7 +36,7 @@ class Probability
   end
 
   def maximum_size
-    10000000000000
+    1000
   end
 
   def size_minimum(new_size)
@@ -45,8 +45,8 @@ class Probability
   end
 
   def size_maximum(new_size)
-    new_size = maximum_size if new_size > maximum_size
-    # new_size = 100 if new_size > maximum_size
+    # new_size = maximum_size if new_size > maximum_size
+    new_size = 100 if new_size > maximum_size
     new_size
   end
 
@@ -58,15 +58,15 @@ class Probability
   		if trade == 1 
         @trade_saver << profit_loss(new_size, trade)
         
-        new_size *= 2.0
-  			# new_size  += 100
+        new_size *= 2
+  			# new_size  = 100
 
         # new_size  = size_minimum(new_size)   # USE IF YOURE DECREASiNG FOR WINNERS
   			new_size  = size_maximum(new_size)   # USE IF YOURE increasing FOR WINNERS
   		else
         @trade_saver << profit_loss(new_size, trade)
         
-        # new_size *= 2.00
+        # new_size *= 2
   			new_size  = 100
         
         # new_size  = size_maximum(new_size)  
@@ -76,11 +76,13 @@ class Probability
       puts "Your current overall P&L is #{@trade_saver.inject(:+)}"
 
       if @trade_saver.inject(:+) > 100000
+        # Put in the P&L in an array to calculate max drawdown
         riches = true
-        # abort
+        abort
       end
   	end
     puts "Your final P&L is #{@trade_saver.inject(:+)} and rich? #{riches}"
+    puts @get_sequences.percentage
   end
 
   def profit_loss(new_size, trade)
