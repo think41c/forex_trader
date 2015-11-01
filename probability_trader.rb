@@ -34,22 +34,17 @@ class Probability
   end
 
   def starting_size # This can be user input later
-  	100
+  	75
   end
 
   def maximum_size
-    1000000000
+    500
   end
 
   def size_minimum(new_size)
   	new_size = starting_size if new_size < starting_size 
-  	new_size
-  end
-
-  def size_maximum(new_size)
     new_size = maximum_size if new_size > maximum_size
-    # new_size = 100 if new_size > maximum_size
-    new_size
+  	new_size
   end
 
   def trade_sizes(all_trades)
@@ -63,15 +58,13 @@ class Probability
         new_size *= 0.75
   			# new_size  = 100
 
-        # new_size  = size_minimum(new_size)   # USE IF YOURE DECREASiNG FOR WINNERS
-  			new_size  = size_maximum(new_size)   # USE IF YOURE increasing FOR WINNERS
+        new_size  = size_minimum(new_size)   # USE IF YOURE DECREASiNG FOR WINNERS
   		else
         @trade_saver << profit_loss(new_size, trade)
         
         new_size *= 1.3
   			# new_size  = 100
         
-        # new_size  = size_maximum(new_size)  
         new_size  = size_minimum(new_size)
   		end
   		new_size = new_size.to_i
@@ -89,12 +82,9 @@ class Probability
   end
 
   def profit_loss(new_size, trade)
-    if trade == 1
-      profit = new_size * trade
-    else
-      profit = (new_size*0.5) * trade  # Losers only lose half as much
-    end
-    profit
+    @size_style.equal_win_and_losers(new_size, trade)
+    # OR
+    # @size_style.diff_sized_win_and_losers(new_size, trade)
   end
 
   def post
