@@ -1,9 +1,11 @@
 # This revision of forex.rb doesn't necessitate all possible trades, but simply 10,000 trades using the probability given.
 require './trade_creator.rb'
+require './size_style.rb'
 
 class Probability
 
   def initialize 
+    @size_style    = SizeStyle.new
     @get_sequences = TradeCreator.new
     puts "Welcome to Forex trader"
     menu
