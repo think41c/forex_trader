@@ -87,10 +87,6 @@ class Probability
   end
 
   def profit_loss(new_size, trade)
-    ####### THIS IS THE ORIGINAL IF WINNERS AND LOSERS ARE THE SAME SIZE
-  	# profit = new_size * trade
-  	# profit
-    #####################################################################
     if trade == 1
       profit = new_size * trade
     else
