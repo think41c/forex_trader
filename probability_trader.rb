@@ -78,7 +78,7 @@ class Probability
       end
   	end
     puts "Your final P&L is #{@trade_saver.inject(:+)} and rich? #{riches}"
-    puts "Your max drawdown was #{@trade_saver.max}"
+    puts "Your biggest loser was #{@trade_saver.min}"
     puts "The actual percentage of winners was #{@get_sequences.percentage.to_i}"
   end
 
