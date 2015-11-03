@@ -59,7 +59,7 @@ class Probability
         new_size *= 0.75
   			# new_size  = 100
 
-        new_size  = size_minimum(new_size)   # USE IF YOURE DECREASiNG FOR WINNERS
+        new_size  = size_minimum(new_size)
   		else
         @trade_saver << profit_loss(new_size, trade)
         
@@ -72,8 +72,6 @@ class Probability
       puts "Trade #{index}. Your current overall P&L is #{@trade_saver.inject(:+)}"
       ongoing_profits << @trade_saver.inject(:+)
       if @trade_saver.inject(:+) > 100000
-        # Put in the P&L in an array to calculate max drawdown
-        # Also consider makign trade size a percentage of current P&L
         riches = true
         abort
       end
@@ -84,7 +82,9 @@ class Probability
     puts "The actual percentage of winners was #{@get_sequences.percentage.to_i}"
   end
 
-  def profit_loss(new_size, trade)
+  def profit_loss(new_size, trade) 
+    # This deals with whether a winner and loser are the same profits, or differing amounts of Profits.
+
     # @size_style.equal_win_and_losers(new_size, trade)
     # OR
     @size_style.diff_sized_win_and_losers(new_size, trade)
