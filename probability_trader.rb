@@ -59,6 +59,12 @@ class Probability
         @trade_saver << profit_loss(new_size, trade)
         ongoing_profits << @trade_saver.inject(:+)
         puts "10% of your equity is #{ongoing_profits[-1]* 0.10}"
+        equity_based_size = ongoing_profits[-1] * 0.10
+        if equity_based_size < 100
+          new_size = 100
+        else 
+          new_size = equity_based_size.to_i
+        end
         # if 10% of the overall P&L is less than 100 then new size is 100
         # else new_size is now 10% of the overall P&L
       # end 
