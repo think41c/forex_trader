@@ -78,13 +78,14 @@ class Probability
       end
   	end
     puts "Your final P&L is #{@trade_saver.inject(:+)} and rich? #{riches}"
+    puts "Your max drawdown was #{@trade_saver.max}"
     puts "The actual percentage of winners was #{@get_sequences.percentage.to_i}"
   end
 
   def profit_loss(new_size, trade)
-    @size_style.equal_win_and_losers(new_size, trade)
+    # @size_style.equal_win_and_losers(new_size, trade)
     # OR
-    # @size_style.diff_sized_win_and_losers(new_size, trade)
+    @size_style.diff_sized_win_and_losers(new_size, trade)
   end
 
   def post
