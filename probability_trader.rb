@@ -48,28 +48,39 @@ class Probability
   end
 
   def trade_sizes(all_trades)
-    riches       = false
-  	new_size     = starting_size.to_i
-  	@trade_saver = []
+    riches          = false
+  	new_size        = starting_size.to_i
+  	@trade_saver    = []
     ongoing_profits = []
 
   	all_trades.each_with_index do |trade, index| 
-  		if trade == 1 
+  	
+     #################### THIS IS IF WE ONLY USE 10% OF OUR EQUITY TO TRADE	
+      if trade == 1 
         @trade_saver << profit_loss(new_size, trade)
-        
-        new_size *= 0.75
-  			# new_size  = 100
+        # if 10% of the overall P&L is less than 100 then new size is 100
+        # else new_size is now 10% of the overall P&L
+      end 
+    ##############################################
 
-        new_size  = size_minimum(new_size)
-  		else
-        @trade_saver << profit_loss(new_size, trade)
+    ##########################################################
+    # This is for a percentage based on the prior winner or loser. 
+    #   if trade == 1 
+    #     @trade_saver << profit_loss(new_size, trade)
         
-        new_size *= 1.3
-  			# new_size  = 100
+    #     new_size *= 0.75
+  		# 	# new_size  = 100
+
+    #     new_size  = size_minimum(new_size)
+  		# else
+    #     @trade_saver << profit_loss(new_size, trade)
         
-        new_size  = size_minimum(new_size)
-  		end
-  		# new_size = new_size.to_i
+    #     new_size *= 1.3
+  		# 	# new_size  = 100
+        
+    #     new_size  = size_minimum(new_size)
+  		# end
+
       puts "Trade #{index}. Your current overall P&L is #{@trade_saver.inject(:+)}"
       ongoing_profits << @trade_saver.inject(:+)
       if @trade_saver.inject(:+) > 100000
