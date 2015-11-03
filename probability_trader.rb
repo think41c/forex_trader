@@ -51,6 +51,7 @@ class Probability
     riches       = false
   	new_size     = starting_size
   	@trade_saver = []
+    ongoing_profits = []
   	all_trades.each_with_index do |trade, index| 
   		if trade == 1 
         @trade_saver << profit_loss(new_size, trade)
@@ -69,7 +70,7 @@ class Probability
   		end
   		new_size = new_size.to_i
       puts "Trade #{index}. Your current overall P&L is #{@trade_saver.inject(:+)}"
-
+      ongoing_profits << @trade_saver.inject(:+)
       if @trade_saver.inject(:+) > 100000
         # Put in the P&L in an array to calculate max drawdown
         # Also consider makign trade size a percentage of current P&L
