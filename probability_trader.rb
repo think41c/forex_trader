@@ -48,7 +48,6 @@ class Probability
   end
 
   def trade_sizes(all_trades)
-    riches          = false
   	new_size        = starting_size.to_i
   	@trade_saver    = []
     ongoing_profits = []
@@ -61,7 +60,8 @@ class Probability
         puts "10% of your equity is #{(ongoing_profits[-1]* 0.10).to_i}"
         equity_based_size = ongoing_profits[-1] * 0.10
         if equity_based_size < 100
-          new_size = 100
+          # new_size = 100
+          new_size = equity_based_size
         else 
           new_size = equity_based_size.to_i
         end
@@ -88,26 +88,23 @@ class Probability
     #     new_size  = size_minimum(new_size)
   		# end
 
-      puts "Trade #{index}. Your current overall P&L is #{@trade_saver.inject(:+)}"
+      puts "Trade #{index}. Your current overall P&L is #{@trade_saver.inject(:+).to_i}"
       # ongoing_profits << @trade_saver.inject(:+)
-      if @trade_saver.inject(:+) > 100000
-        riches = true
-        abort
-      end
+      
   	end
 
-    puts "Your final P&L is #{@trade_saver.inject(:+)} and rich? #{riches}"
+    puts "Your final P&L is #{@trade_saver.inject(:+)}"
     puts "Your biggest loser was #{@trade_saver.min}"
     puts "Your biggest drawdown was #{ongoing_profits.min}"
     puts "The actual percentage of winners was #{@get_sequences.percentage.to_i}"
   end
 
   def profit_loss(new_size, trade) 
-    # This deals with whether a winner and loser are the same profits, or differing amounts of Profits.
+    # This method deals with whether a winner and loser are the same profits, or differing amounts of Profits.
 
-    # @size_style.equal_win_and_losers(new_size, trade)
+    @size_style.equal_win_and_losers(new_size, trade)
     # OR
-    @size_style.diff_sized_win_and_losers(new_size, trade)
+    # @size_style.diff_sized_win_and_losers(new_size, trade)
   end
 
   def post
