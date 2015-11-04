@@ -48,7 +48,7 @@ class Probability
   end
 
   def equity_percent_to_risk
-    0.10
+    0.30
   end
 
   def trade_sizes(all_trades)
@@ -61,7 +61,7 @@ class Probability
      #################### THIS IS IF WE ONLY USE 10% OF OUR EQUITY TO TRADE	
         @trade_saver << profit_loss(new_size, trade)
         ongoing_profits << @trade_saver.inject(:+)
-        puts "10% of your equity is #{(ongoing_profits[-1]* equity_percent_to_risk).to_i}"
+        puts "#{equity_percent_to_risk*100}% of your equity is #{(ongoing_profits[-1]* equity_percent_to_risk).to_i}"
         equity_based_size = ongoing_profits[-1] * equity_percent_to_risk
         if equity_based_size < starting_size
           new_size = starting_size
