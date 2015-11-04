@@ -34,7 +34,7 @@ class Probability
   end
 
   def starting_size # This can be user input later
-  	75
+  	100
   end
 
   def maximum_size
@@ -60,11 +60,12 @@ class Probability
         puts "10% of your equity is #{(ongoing_profits[-1]* 0.10).to_i}"
         equity_based_size = ongoing_profits[-1] * 0.10
         if equity_based_size < 100
-          # new_size = 100
-          new_size = equity_based_size
+          new_size = 100
+          # new_size = equity_based_size
         else 
           new_size = equity_based_size.to_i
         end
+        puts "For trade #{index} the size is #{new_size}."
         # if 10% of the overall P&L is less than 100 then new size is 100
         # else new_size is now 10% of the overall P&L
       # end 
@@ -88,7 +89,7 @@ class Probability
     #     new_size  = size_minimum(new_size)
   		# end
 
-      puts "Trade #{index}. Your current overall P&L is #{@trade_saver.inject(:+).to_i}"
+      puts "Trade #{index} begins w/ your current overall P&L of #{@trade_saver.inject(:+).to_i} \n\n"
       # ongoing_profits << @trade_saver.inject(:+)
       
   	end
