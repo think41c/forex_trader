@@ -78,23 +78,20 @@ class Probability
     ##########################################################
     # This is for a percentage based on the prior winner or loser. 
     #   if trade == 1 
-    #     @trade_saver << profit_loss(new_size, trade)
-        
+    #     @trade_saver << profit_loss(new_size, trade)    
     #     new_size *= 0.75
-  		# 	# new_size  = 100
-
+  	# 	# new_size  = 100
     #     new_size  = size_minimum(new_size)
-  		# else
+  	# else
     #     @trade_saver << profit_loss(new_size, trade)
-        
     #     new_size *= 1.3
-  		# 	# new_size  = 100
-        
+  	# 	# new_size  = 100
     #     new_size  = size_minimum(new_size)
-  		# end
+  	# end
+    # ongoing_profits << @trade_saver.inject(:+)
 
-      puts "Trade #{index} begins w/ your current overall P&L of #{@trade_saver.inject(:+).to_i} \n\n"
-      # ongoing_profits << @trade_saver.inject(:+)
+    puts "Trade #{index} begins w/ your current overall P&L of #{@trade_saver.inject(:+).to_i} \n\n"
+  
       
   	end
 
