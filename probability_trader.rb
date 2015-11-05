@@ -23,8 +23,11 @@ class Probability
     display = gets.chomp.downcase
     if display == "y" 
       post
+    elsif display == "n"
+      # Ending
     else
-      puts "You didn't enter \"Y\" Ending now"
+      puts "You didn't enter \"Y\""
+      display_trades
     end
   end
 
@@ -43,7 +46,7 @@ class Probability
 
   def size_minimum(new_size)
   	new_size = starting_size if new_size < starting_size 
-    new_size = maximum_size if new_size > maximum_size
+    new_size = maximum_size  if new_size > maximum_size
   	new_size
   end
 
