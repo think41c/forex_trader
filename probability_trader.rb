@@ -24,7 +24,7 @@ class Probability
     if display == "y" 
       post
     elsif display == "n"
-      # Ending
+      exit_screen
     else
       puts "You didn't enter \"Y\""
       display_trades
@@ -36,6 +36,10 @@ class Probability
   	user_percent_win = gets.chomp.to_i
   end
 
+  def exit_screen
+    puts "Thanks for trying out your trading ideas with Probabilty Trader. Exiting to prompt!"
+  end
+  
   def starting_size # This can be user input later
   	100
   end
