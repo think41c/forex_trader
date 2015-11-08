@@ -58,30 +58,29 @@ class Probability
     0.30
   end
 
+  def new_size_based_on_equity(new_size, ongoing_profits)
+      @trade_saver << profit_loss(new_size, trade)
+      ongoing_profits << @trade_saver.inject(:+)
+      puts "#{equity_percent_to_risk*100}% of your equity is #{(ongoing_profits[-1]* equity_percent_to_risk).to_i}"
+      equity_based_size = ongoing_profits[-1] * equity_percent_to_risk
+      if equity_based_size < starting_size
+        new_size = starting_size
+        # new_size = equity_based_size
+      else 
+        new_size = equity_based_size.to_i
+      end
+      puts "For trade #{index} the size is #{new_size}."
+  end
+
+
   def trade_sizes(all_trades)
   	new_size        = starting_size.to_i
   	@trade_saver    = []
     ongoing_profits = []
 
   	all_trades.each_with_index do |trade, index| 
-  	
-     #################### THIS IS IF WE ONLY USE 10% OF OUR EQUITY TO TRADE	
-        @trade_saver << profit_loss(new_size, trade)
-        ongoing_profits << @trade_saver.inject(:+)
-        puts "#{equity_percent_to_risk*100}% of your equity is #{(ongoing_profits[-1]* equity_percent_to_risk).to_i}"
-        equity_based_size = ongoing_profits[-1] * equity_percent_to_risk
-        if equity_based_size < starting_size
-          new_size = starting_size
-          # new_size = equity_based_size
-        else 
-          new_size = equity_based_size.to_i
-        end
-        puts "For trade #{index} the size is #{new_size}."
-        # if 10% of the overall P&L is less than 100 then new size is 100
-        # else new_size is now 10% of the overall P&L
-      # end 
-    ##############################################
-
+      new_size_based_on_equity(new_size, ongoing_profits)
+  	  end
     ##########################################################
     # This is for a percentage based on the prior winner or loser. 
     #   if trade == 1 
