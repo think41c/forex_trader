@@ -74,11 +74,13 @@ class Probability
 
   def new_size_based_on_prior_trade(new_size, ongoing_profits, trade, index)
     #This is for a percentage based on the prior winner or loser. 
+    puts "#{new_size} is starting off ass..."
       if trade == 1 
         @trade_saver << profit_loss(new_size, trade)    
         puts "New size before it's multiplied #{new_size}"
         new_size *= 2
         puts "New size after it's multiplied #{new_size}"
+        @prior_trade_size = new_size
       # new_size  = 100
         # new_size  = size_maximum(new_size)
     else
@@ -99,6 +101,7 @@ class Probability
   	all_trades.each_with_index do |trade, index| 
       # new_size_based_on_equity(new_size, ongoing_profits, trade, index)
       new_size_based_on_prior_trade(new_size, ongoing_profits, trade, index)
+      new_size = @prior_trade_size
       puts "Trade #{index} begins w/ your current overall P&L of #{@trade_saver.inject(:+).to_i} \n\n"
     	end
 
