@@ -41,11 +41,11 @@ class Probability
   end
   
   def starting_size # This can be user input later
-  	100
+  	101  
   end
 
   def maximum_size
-    500
+    10000
   end
 
   def size_minimum(new_size)
@@ -72,6 +72,24 @@ class Probability
     puts "For trade #{index} the size is #{new_size}."
   end
 
+  def new_size_based_on_prior_trade(new_size, ongoing_profits, trade, index)
+    #This is for a percentage based on the prior winner or loser. 
+      if trade == 1 
+        @trade_saver << profit_loss(new_size, trade)    
+        puts "New size before it's multiplied #{new_size}"
+        new_size *= 2
+        puts "New size after it's multiplied #{new_size}"
+      # new_size  = 100
+        # new_size  = size_maximum(new_size)
+    else
+        @trade_saver << profit_loss(new_size, trade)
+        new_size *= 4
+      # new_size  = 100
+        new_size  = size_minimum(new_size)
+    end
+    ongoing_profits << @trade_saver.inject(:+)
+  end
+
 
   def trade_sizes(all_trades)
   	new_size        = starting_size.to_i
@@ -79,26 +97,10 @@ class Probability
     ongoing_profits = []
 
   	all_trades.each_with_index do |trade, index| 
-      new_size_based_on_equity(new_size, ongoing_profits, trade, index)
-    ##########################################################
-    # This is for a percentage based on the prior winner or loser. 
-    #   if trade == 1 
-    #     @trade_saver << profit_loss(new_size, trade)    
-    #     new_size *= 0.75
-  	# 	# new_size  = 100
-    #     new_size  = size_minimum(new_size)
-  	# else
-    #     @trade_saver << profit_loss(new_size, trade)
-    #     new_size *= 1.3
-  	# 	# new_size  = 100
-    #     new_size  = size_minimum(new_size)
-  	# end
-    # ongoing_profits << @trade_saver.inject(:+)
-
-    puts "Trade #{index} begins w/ your current overall P&L of #{@trade_saver.inject(:+).to_i} \n\n"
-  
-      
-  	end
+      # new_size_based_on_equity(new_size, ongoing_profits, trade, index)
+      new_size_based_on_prior_trade(new_size, ongoing_profits, trade, index)
+      puts "Trade #{index} begins w/ your current overall P&L of #{@trade_saver.inject(:+).to_i} \n\n"
+    	end
 
     puts "Your final P&L is #{@trade_saver.inject(:+)}"
     puts "Your biggest loser was #{@trade_saver.min}"
