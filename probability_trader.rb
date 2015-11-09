@@ -100,15 +100,23 @@ class Probability
 
   	all_trades.each_with_index do |trade, index| 
       # new_size_based_on_equity(new_size, ongoing_profits, trade, index)
+      
       new_size_based_on_prior_trade(new_size, ongoing_profits, trade, index)
       new_size = @prior_trade_size
+      
       puts "Trade #{index} begins w/ your current overall P&L of #{@trade_saver.inject(:+).to_i} \n\n"
     	end
 
     puts "Your final P&L is #{@trade_saver.inject(:+)}"
     puts "Your biggest loser was #{@trade_saver.min}"
-    puts "Your biggest drawdown was #{ongoing_profits.min}"
+    puts "Your lowest account balance was #{ongoing_profits.min}"
+    puts "Your biggest drawdown was #{drawdown}"
     puts "The actual percentage of winners was #{@get_sequences.percentage.to_i}"
+  end
+
+  def drawdown
+    -10000
+    # You need to calculate drawdown appropriately here.
   end
 
   def profit_loss(new_size, trade) 
