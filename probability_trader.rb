@@ -117,6 +117,15 @@ class Probability
   def drawdown
     -10000
     # You need to calculate drawdown appropriately here.
+    # Pseudo-code
+    # Look through the array of ongoing P&L. 
+    # IF the previous index in the array/P&L is higher, Then save that as "high"
+    # Look at the currentl P&L index. And save this as current_low. 
+    # Subtract the difference between high and current. This is the current drawdown. 
+    # If next index isn't lower than current, then current_low remains unchanged. 
+    # If next index isn't higher than "high", then high isn't changed. 
+    # Drawdown is now max_drawdown and doesn't change until another low is created BEFORE a new high is created. 
+    
   end
 
   def profit_loss(new_size, trade) 
