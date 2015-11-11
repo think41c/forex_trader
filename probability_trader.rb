@@ -115,6 +115,7 @@ class Probability
   end
 
   def drawdown(ongoing_profits)
+    ongoing_profits = [10,20,0,100]   # This is for testing purposes - remove when verified drawdown is 20
     biggest_drawdown = 0 
     ongoing_profits.each_with_index do |current_profit, index|
       if current_profit > biggest_drawdown
@@ -122,8 +123,6 @@ class Probability
       end
     end
 
-    # Look through the array of ongoing P&L. 
-    # IF the previous index in the array/P&L is higher, Then save that as "high"
     # Look at the currentl P&L index. And save this as current_low. 
     # Subtract the difference between high and current. This is the current drawdown. 
     # If next index isn't lower than current, then current_low remains unchanged. 
