@@ -110,12 +110,12 @@ class Probability
     puts "Your final P&L is #{@trade_saver.inject(:+)}"
     puts "Your biggest loser was #{@trade_saver.min}"
     puts "Your lowest account balance was #{ongoing_profits.min}"
-    puts "Your biggest drawdown was #{drawdown}"
+    puts "Your biggest drawdown was #{drawdown(ongoing_profits)}"
     puts "The actual percentage of winners was #{@get_sequences.percentage.to_i}"
   end
 
-  def drawdown
-    -10000
+  def drawdown(ongoing_profits)
+    biggest_drawdown = 0 
     # You need to calculate drawdown appropriately here.
     # Pseudo-code
     # Look through the array of ongoing P&L. 
@@ -125,7 +125,7 @@ class Probability
     # If next index isn't lower than current, then current_low remains unchanged. 
     # If next index isn't higher than "high", then high isn't changed. 
     # Drawdown is now max_drawdown and doesn't change until another low is created BEFORE a new high is created. 
-    
+    biggest_drawdown 
   end
 
   def profit_loss(new_size, trade) 
