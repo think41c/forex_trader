@@ -74,7 +74,7 @@ class Probability
 
   def new_size_based_on_prior_trade(new_size, ongoing_profits, trade, index)
     #This is for a percentage based on the prior winner or loser. 
-    puts "#{new_size} is starting off ass..."
+    puts "#{new_size} is starting off as..."
       if trade == 1 
         @trade_saver << profit_loss(new_size, trade)    
         puts "New size before it's multiplied #{new_size}"
@@ -116,8 +116,12 @@ class Probability
 
   def drawdown(ongoing_profits)
     biggest_drawdown = 0 
-    # You need to calculate drawdown appropriately here.
-    # Pseudo-code
+    ongoing_profits.each_with_index do |current_profit, index|
+      if current_profit > biggest_drawdown
+        high = current_profit
+      end
+    end
+
     # Look through the array of ongoing P&L. 
     # IF the previous index in the array/P&L is higher, Then save that as "high"
     # Look at the currentl P&L index. And save this as current_low. 
