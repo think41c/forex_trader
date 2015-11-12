@@ -125,6 +125,8 @@ class Probability
       elsif current_profit < low
         low  = current_profit
       end
+    biggest_drawdown = high - low
+
     end
 
     # Look at the currentl P&L index. And save this as current_low. 
