@@ -12,9 +12,9 @@ class Probability
   end
 
   def menu
-  	puts "Probability trader takes 10,000 trades based on your percentage."
-  	all_trades = @get_sequences.trade_gen(get_user_data)
-  	trade_sizes(all_trades)
+    puts "Probability trader takes 10,000 trades based on your percentage."
+    all_trades = @get_sequences.trade_gen(get_user_data)
+    trade_sizes(all_trades)
     display_trades
   end
 
@@ -110,7 +110,7 @@ class Probability
     puts "Your final P&L is #{@trade_saver.inject(:+)}"
     puts "Your biggest loser was #{@trade_saver.min}"
     puts "Your lowest account balance was #{ongoing_profits.min}"
-    puts "Your biggest drawdown was #{drawdown(ongoing_profits)}"
+    # puts "Your biggest drawdown was #{drawdown(ongoing_profits)}"
     puts "The actual percentage of winners was #{@get_sequences.percentage.to_i}"
   end
 
@@ -123,7 +123,7 @@ class Probability
       puts "In the matrix"
       if current_profit > biggest_drawdown  # For a winning trade to start, it will always go here first.
         high = current_profit               # The current profits will be the high of the ongoing equity.
-      elsif current_profit < low            # 
+      elsif current_profit < low            #   
         low  = current_profit
       else 
         low  = current_profit
@@ -151,3 +151,4 @@ end
 
 a = Probability.new
 a
+
