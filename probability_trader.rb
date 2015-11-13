@@ -115,14 +115,17 @@ class Probability
   end
 
   def drawdown(ongoing_profits)
-    ongoing_profits = [10,20,0,100]   # This is for testing purposes - remove when verified drawdown is 20
+    ongoing_profits = [10,20,0,100]   # **This is for testing purposes - remove when verified drawdown is 20**
     biggest_drawdown = 0 
     low  = 0 
     high = 0 
     ongoing_profits.each_with_index do |current_profit, index|
-      if current_profit > biggest_drawdown
-        high = current_profit
-      elsif current_profit < low
+      puts "In the matrix"
+      if current_profit > biggest_drawdown  # For a winning trade to start, it will always go here first.
+        high = current_profit               # The current profits will be the high of the ongoing equity.
+      elsif current_profit < low            # 
+        low  = current_profit
+      else 
         low  = current_profit
       end
     biggest_drawdown = high - low
