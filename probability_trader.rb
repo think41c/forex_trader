@@ -136,7 +136,7 @@ class Probability
 
   def profit_loss(new_size, trade) 
     # This method deals with whether a winner and loser are the same profits, or differing amounts of Profits.
-
+    puts "IM ABOUT TO CRASH - HERES THe VALUE OF #{trade} TRADE, and NEW_SIZE is #{new_size}" # New_Size is sometimes nil
     # @size_style.equal_win_and_losers(new_size, trade)
     # OR
     @size_style.diff_sized_win_and_losers(new_size, trade)
