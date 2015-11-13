@@ -110,7 +110,7 @@ class Probability
     puts "Your final P&L is #{@trade_saver.inject(:+)}"
     puts "Your biggest loser was #{@trade_saver.min}"
     puts "Your lowest account balance was #{ongoing_profits.min}"
-    # puts "Your biggest drawdown was #{drawdown(ongoing_profits)}"
+    puts "Your biggest drawdown was #{drawdown(ongoing_profits)}"
     puts "The actual percentage of winners was #{@get_sequences.percentage.to_i}"
   end
 
@@ -137,9 +137,9 @@ class Probability
   def profit_loss(new_size, trade) 
     # This method deals with whether a winner and loser are the same profits, or differing amounts of Profits.
 
-    @size_style.equal_win_and_losers(new_size, trade)
+    # @size_style.equal_win_and_losers(new_size, trade)
     # OR
-    # @size_style.diff_sized_win_and_losers(new_size, trade)
+    @size_style.diff_sized_win_and_losers(new_size, trade)
   end
 
   def post
