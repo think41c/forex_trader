@@ -131,12 +131,6 @@ class Probability
     biggest_drawdown = high - low
 
     end
-
-    # Look at the currentl P&L index. And save this as current_low. 
-    # Subtract the difference between high and current. This is the current drawdown. 
-    # If next index isn't lower than current, then current_low remains unchanged. 
-    # If next index isn't higher than "high", then high isn't changed. 
-    # Drawdown is now max_drawdown and doesn't change until another low is created BEFORE a new high is created. 
     biggest_drawdown 
   end
 
