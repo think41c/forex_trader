@@ -59,6 +59,7 @@ class Probability
   end
 
   def new_size_based_on_equity(new_size, ongoing_profits, trade, index)
+    puts "I'm in new_size_based_on_equity and new_size is :#{new_size}:"
     @trade_saver << profit_loss(new_size, trade)
     ongoing_profits << @trade_saver.inject(:+)
     puts "#{equity_percent_to_risk*100}% of your equity is #{(ongoing_profits[-1]* equity_percent_to_risk).to_i}"
