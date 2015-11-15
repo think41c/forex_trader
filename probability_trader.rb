@@ -103,7 +103,7 @@ class Probability
       new_size_based_on_equity(new_size, ongoing_profits, trade, index)
       
       # new_size_based_on_prior_trade(new_size, ongoing_profits, trade, index)
-      puts "In TRADE_SIZES - HERES THe VALUE OF #{trade} TRADE, and NEW_SIZE is #{new_size}" # New_Size is sometimes nil
+      puts "Trade_sizes - won't make it to this point if new_size is nil - value: #{trade}:" # New_Size is sometimes nil
       new_size = @prior_trade_size
       
       puts "Trade #{index} begins w/ your current overall P&L of #{@trade_saver.inject(:+).to_i} \n\n"
