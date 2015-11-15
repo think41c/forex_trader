@@ -101,6 +101,7 @@ class Probability
 
   	all_trades.each_with_index do |trade, index| 
       ###### Comment out the method of new size methodology you don't want ######
+      puts "**I'm in trade_sizes and new_size is #{new_size}**"
       new_size_based_on_equity(new_size, ongoing_profits, trade, index)
       
       # new_size_based_on_prior_trade(new_size, ongoing_profits, trade, index)
