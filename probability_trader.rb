@@ -100,13 +100,11 @@ class Probability
     ongoing_profits = []
 
   	all_trades.each_with_index do |trade, index| 
-      ###### Comment out the method of new size methodology you don't want ######
-      puts "**I'm in trade_sizes and new_size is #{new_size}**"
-      new_size_based_on_equity(new_size, ongoing_profits, trade, index)
-      
-      # new_size_based_on_prior_trade(new_size, ongoing_profits, trade, index)
+        ### Comment out the method of new size methodology you don't want ######
+          new_size_based_on_equity(new_size, ongoing_profits, trade, index)
+        # new_size_based_on_prior_trade(new_size, ongoing_profits, trade, index)
       puts "Trade_sizes - won't make it to this point if new_size is nil - value: #{trade}:" # New_Size is sometimes nil
-      new_size = @prior_trade_size
+      new_size = @prior_trade_size #  <---- ***This causing new_size to turn into nil.*** 
       
       puts "Trade #{index} begins w/ your current overall P&L of #{@trade_saver.inject(:+).to_i} \n\n"
     	end
