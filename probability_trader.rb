@@ -67,8 +67,10 @@ class Probability
     if equity_based_size < starting_size
       new_size = starting_size
       # new_size = equity_based_size
+      @prior_trade_size = new_size
     else 
       new_size = equity_based_size.to_i
+      @prior_trade_size = new_size
     end
     puts "For trade #{index} the size is #{new_size}."
   end
@@ -89,6 +91,7 @@ class Probability
         new_size *= 4
       # new_size  = 100                       # Use if when you lose, you go back to an arbitrary 'starting size'
         new_size  = size_minimum(new_size)
+        @prior_trade_size = new_size
     end
     ongoing_profits << @trade_saver.inject(:+)
   end
