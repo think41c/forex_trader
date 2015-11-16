@@ -80,9 +80,7 @@ class Probability
     puts "#{new_size} is starting off as..."
       if trade == 1 
         @trade_saver << profit_loss(new_size, trade)    
-        puts "New size before it's multiplied #{new_size}"
         new_size *= 2
-        puts "New size after it's multiplied #{new_size}"
         @prior_trade_size = new_size
         # new_size  = 100                     # Use if when you win, you go back to an arbitrary 'starting size'
         # new_size  = size_maximum(new_size)  # Use if imposing a size_maximum
