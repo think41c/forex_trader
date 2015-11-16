@@ -82,12 +82,12 @@ class Probability
         new_size *= 2
         puts "New size after it's multiplied #{new_size}"
         @prior_trade_size = new_size
-      # new_size  = 100
-        # new_size  = size_maximum(new_size)
+        # new_size  = 100                     # Use if when you win, you go back to an arbitrary 'starting size'
+        # new_size  = size_maximum(new_size)  # Use if imposing a size_maximum
     else
         @trade_saver << profit_loss(new_size, trade)
         new_size *= 4
-      # new_size  = 100
+      # new_size  = 100                       # Use if when you lose, you go back to an arbitrary 'starting size'
         new_size  = size_minimum(new_size)
     end
     ongoing_profits << @trade_saver.inject(:+)
@@ -138,7 +138,6 @@ class Probability
 
   def profit_loss(new_size, trade) 
     # This method deals with whether a winner and loser are the same profits, or differing amounts of Profits.
-    puts "IM ABOUT TO CRASH - HERES THe VALUE OF #{trade} TRADE, and NEW_SIZE is #{new_size}" # New_Size is sometimes nil
     # @size_style.equal_win_and_losers(new_size, trade)
     # OR
     @size_style.diff_sized_win_and_losers(new_size, trade)
