@@ -104,7 +104,6 @@ class Probability
         ### Comment out the method of new size methodology you don't want ######
           new_size_based_on_equity(new_size, ongoing_profits, trade, index)
         # new_size_based_on_prior_trade(new_size, ongoing_profits, trade, index)
-      puts "Trade_sizes - won't make it to this point if new_size is nil - value: #{trade}:" # New_Size is sometimes nil
       new_size = @prior_trade_size #  <---- ***This causing new_size to turn into nil.*** 
       
       puts "Trade #{index} begins w/ your current overall P&L of #{@trade_saver.inject(:+).to_i} \n\n"
@@ -123,7 +122,7 @@ class Probability
     low  = 0 
     high = 0 
     ongoing_profits.each_with_index do |current_profit, index|
-      puts "In the matrix"
+      puts "The following code should be doing things to calculate drawdown."
       if current_profit > biggest_drawdown  # For a winning trade to start, it will always go here first.
         high = current_profit               # The current profits will be the high of the ongoing equity.
       elsif current_profit < low            #   
