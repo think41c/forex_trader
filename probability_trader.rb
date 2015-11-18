@@ -41,7 +41,7 @@ class Probability
   end
   
   def starting_size # This can be user input later
-  	101  
+  	100  
   end
 
   def maximum_size
@@ -108,7 +108,10 @@ class Probability
       
       puts "Trade #{index} begins w/ your current overall P&L of #{@trade_saver.inject(:+).to_i} \n\n"
     	end
+    end_report(ongoing_profits)
+  end
 
+  def end_report(ongoing_profits)
     puts "Your final P&L is #{@trade_saver.inject(:+)}"
     puts "Your biggest loser was #{@trade_saver.min}"
     puts "Your lowest account balance was #{ongoing_profits.min}"
@@ -125,7 +128,7 @@ class Probability
       puts "The following code should be doing things to calculate drawdown."
       if current_profit > biggest_drawdown  # For a winning trade to start, it will always go here first.
         high = current_profit               # The current profits will be the high of the ongoing equity.
-      elsif current_profit < low            #   
+      elsif current_profit < low               
         low  = current_profit
       else 
         low  = current_profit
