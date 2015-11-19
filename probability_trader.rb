@@ -1,16 +1,19 @@
 # This revision of forex.rb doesn't necessitate all possible trades, but simply 10,000 trades using the probability given.
 require './trade_creator.rb'
 require './size_style.rb'
+require './output_messages.rb'
+
 
 class Probability
 
   def initialize 
-    @size_style    = SizeStyle.new
-    @get_sequences = TradeCreator.new
+    @size_style      = SizeStyle.new
+    @get_sequences   = TradeCreator.new
+    @output_messages = OutputMessages.new
     puts "Welcome to Forex trader"
     menu
   end
-
+end
   def menu
     puts "Probability trader takes 10,000 trades based on your percentage."
     all_trades = @get_sequences.trade_gen(get_user_data)
@@ -24,7 +27,7 @@ class Probability
     if display == "y" 
       display_all_trades
     elsif display == "n"
-      exit_screen
+      @output_messages.exit_screen
     else
       puts "You didn't enter \"Y\""
       display_trades
@@ -36,9 +39,6 @@ class Probability
   	user_percent_win = gets.chomp.to_i
   end
 
-  def exit_screen
-    puts "Thanks for trying out your trading ideas with Probabilty Trader. Exiting to prompt!"
-  end
   
   def starting_size # This can be user input later
   	100  
@@ -48,15 +48,17 @@ class Probability
     10000
   end
 
+  def equity_percent_to_risk
+    0.30
+  end
+
   def size_minimum(new_size)
   	new_size = starting_size if new_size < starting_size 
     new_size = maximum_size  if new_size > maximum_size
   	new_size
   end
 
-  def equity_percent_to_risk
-    0.30
-  end
+  
 
   def new_size_based_on_equity(new_size, ongoing_profits, trade, index)
     puts "I'm in new_size_based_on_equity and new_size is :#{new_size}:"
@@ -108,19 +110,10 @@ class Probability
       
       puts "Trade #{index} begins w/ your current overall P&L of #{@trade_saver.inject(:+).to_i} \n\n"
     	end
-    end_report(ongoing_profits)
+    @output_messages.end_report(ongoing_profits, @trade_saver)
   end
 
-  def end_report(ongoing_profits)
-    puts <<-STR
-      Your final P&L is #{@trade_saver.inject(:+)} 
-      Your biggest loser was #{@trade_saver.min} 
-      Your lowest account balance was #{ongoing_profits.min} 
-      Your biggest drawdown was #{drawdown(ongoing_profits)} 
-      The actual percentage of winners was #{@get_sequences.percentage.to_i}"
-    STR
-  end
-
+  
   def drawdown(ongoing_profits)
     ongoing_profits = [10,20,0,100]   # **This is for testing purposes - remove when verified drawdown is 20**
     biggest_drawdown = 0 
@@ -152,6 +145,7 @@ class Probability
     puts @trade_saver
     initialize
   end
+
 
 end
 
