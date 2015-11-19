@@ -13,7 +13,7 @@ class Probability
     puts "Welcome to Forex trader"
     menu
   end
-end
+
   def menu
     puts "Probability trader takes 10,000 trades based on your percentage."
     all_trades = @get_sequences.trade_gen(get_user_data)
