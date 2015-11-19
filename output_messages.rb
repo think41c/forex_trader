@@ -1,11 +1,11 @@
 class OutputMessages
 
-  def end_report(ongoing_profits, trade_saver)
+  def end_report(ongoing_profits, trade_saver, drawdown_result)
     puts <<-STR
       Your final P&L is #{trade_saver.inject(:+)} 
       Your biggest loser was #{trade_saver.min} 
       Your lowest account balance was #{ongoing_profits.min} 
-      Your biggest drawdown was #{drawdown(ongoing_profits)} 
+      Your biggest drawdown was #{} 
       The actual percentage of winners was #{@get_sequences.percentage.to_i}"
     STR
   end
