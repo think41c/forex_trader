@@ -103,14 +103,15 @@ class Probability
     ongoing_profits = []
 
   	all_trades.each_with_index do |trade, index| 
-        ### Comment out the method of new size methodology you don't want ######
-          new_size_based_on_equity(new_size, ongoing_profits, trade, index)
-        # new_size_based_on_prior_trade(new_size, ongoing_profits, trade, index)
+      ### Comment out the method of new size methodology you don't want ######
+        new_size_based_on_equity(new_size, ongoing_profits, trade, index)
+      # new_size_based_on_prior_trade(new_size, ongoing_profits, trade, index)
       new_size = @prior_trade_size #  <---- ***This causing new_size to turn into nil.*** 
-      
+    
       puts "Trade #{index} begins w/ your current overall P&L of #{@trade_saver.inject(:+).to_i} \n\n"
-    	end
-    @output_messages.end_report(ongoing_profits, @trade_saver)
+  	end
+    drawdown_result = drawdown(ongoing_profits)
+    @output_messages.end_report(ongoing_profits, @trade_saver, drawdown_result)
   end
 
   
