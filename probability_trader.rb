@@ -22,7 +22,7 @@ class Probability
     puts "Would you like to see all trades? (Y)es, or (N)o?"
     display = gets.chomp.downcase
     if display == "y" 
-      post
+      display_all_trades
     elsif display == "n"
       exit_screen
     else
@@ -112,11 +112,13 @@ class Probability
   end
 
   def end_report(ongoing_profits)
-    puts "Your final P&L is #{@trade_saver.inject(:+)}"
-    puts "Your biggest loser was #{@trade_saver.min}"
-    puts "Your lowest account balance was #{ongoing_profits.min}"
-    puts "Your biggest drawdown was #{drawdown(ongoing_profits)}"
-    puts "The actual percentage of winners was #{@get_sequences.percentage.to_i}"
+    puts <<-STR
+      Your final P&L is #{@trade_saver.inject(:+)} 
+      Your biggest loser was #{@trade_saver.min} 
+      Your lowest account balance was #{ongoing_profits.min} 
+      Your biggest drawdown was #{drawdown(ongoing_profits)} 
+      The actual percentage of winners was #{@get_sequences.percentage.to_i}"
+    STR
   end
 
   def drawdown(ongoing_profits)
@@ -133,9 +135,9 @@ class Probability
       else 
         low  = current_profit
       end
-    biggest_drawdown = high - low
-
+      biggest_drawdown = high - low
     end
+
     biggest_drawdown 
   end
 
@@ -146,7 +148,7 @@ class Probability
     @size_style.diff_sized_win_and_losers(new_size, trade)
   end
 
-  def post
+  def display_all_trades
     puts @trade_saver
     initialize
   end
