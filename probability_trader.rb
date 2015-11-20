@@ -29,7 +29,7 @@ class Probability
     elsif display == "n"
       @output_messages.exit_screen
     else
-      puts "You didn't enter \"Y\""
+      puts "You didn't enter \"Y\" Try again."
       display_trades
     end
   end
@@ -39,7 +39,6 @@ class Probability
   	user_percent_win = gets.chomp.to_i
   end
 
-  
   def starting_size # This can be user input later
   	100  
   end
