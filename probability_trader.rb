@@ -16,6 +16,13 @@ class Probability
 
   def menu
     puts "Probability trader takes 10,000 trades based on your percentage."
+    puts "The defaults are currently set as:"
+    puts "Winners and losers the same size? (TRUE or FALSE)"
+    puts "Size minimum used?"
+    puts "Size maximum used?"
+    puts "Trading sizes based on account equity or the last trade?"
+    puts "and so on..."
+
     all_trades = @get_sequences.trade_gen(get_user_data)
     trade_sizes(all_trades)
     display_trades
