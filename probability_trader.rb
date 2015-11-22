@@ -10,6 +10,7 @@ class Probability
     @size_style      = SizeStyle.new
     @get_sequences   = TradeCreator.new
     @output_messages = OutputMessages.new
+    @equal_win_loss_flag = true
     puts "Welcome to Forex trader"
     menu
   end
@@ -17,7 +18,7 @@ class Probability
   def menu
     puts "Probability trader takes 10,000 trades based on your percentage."
     puts "The defaults are currently set as:"
-    puts "Winners and losers the same size? (TRUE or FALSE)"
+    puts "Winners and losers the same size? #{@equal_win_loss_flag}"
     puts "Size minimum used?"
     puts "Size maximum used?"
     puts "Trading sizes based on account equity or the last trade?"
@@ -143,9 +144,11 @@ class Probability
 
   def profit_loss(new_size, trade) 
     # This method deals with whether a winner and loser are the same profits, or differing amounts of Profits.
-    # @size_style.equal_win_and_losers(new_size, trade)
-    # OR
-    @size_style.diff_sized_win_and_losers(new_size, trade)
+    if @equal_win_loss_flag == true
+      @size_style.equal_win_and_losers(new_size, trade)
+    else
+      @size_style.diff_sized_win_and_losers(new_size, trade)
+    end
   end
 
   def display_all_trades
