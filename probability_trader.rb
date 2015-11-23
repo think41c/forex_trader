@@ -11,6 +11,8 @@ class Probability
     @get_sequences   = TradeCreator.new
     @output_messages = OutputMessages.new
     @equal_win_loss_flag = true
+    @maximum_size        = true
+
     puts "Welcome to Forex trader"
     menu
   end
@@ -48,11 +50,16 @@ class Probability
   end
 
   def starting_size # This can be user input later
-  	100  
+	  100  
   end
 
   def maximum_size
-    10000
+    if @maximum_size == true
+      max_size = 10000
+    else
+      max_size = 100000000000000000000000 # This  needs to be implented better
+    end
+    max_size
   end
 
   def equity_percent_to_risk
@@ -161,4 +168,3 @@ end
 
 a = Probability.new
 a
-
