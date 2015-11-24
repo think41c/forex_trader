@@ -125,7 +125,7 @@ class Probability
       puts "Trade #{index} begins w/ your current overall P&L of #{@trade_saver.inject(:+).to_i} \n\n"
   	end
     drawdown_result = drawdown(ongoing_profits)
-    @output_messages.end_report(ongoing_profits, @trade_saver, drawdown_result)
+    @output_messages.end_report(ongoing_profits, @trade_saver, drawdown_result, @get_sequences.percentage.to_i)
   end
 
   
