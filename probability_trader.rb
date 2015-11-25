@@ -85,8 +85,11 @@ class Probability
     puts "#{equity_percent_to_risk*100}% of your equity is #{(ongoing_profits[-1]* equity_percent_to_risk).to_i}"
     equity_based_size = ongoing_profits[-1] * equity_percent_to_risk
     if equity_based_size < starting_size
-      new_size = starting_size
-      # new_size = equity_based_size
+      if size_minimum_flag == true
+        new_size = starting_size  
+      else
+        new_size = equity_based_size
+      end
       @prior_trade_size = new_size
     else 
       new_size = equity_based_size.to_i
