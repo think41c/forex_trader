@@ -57,7 +57,8 @@ class Probability
     if @maximum_size == true
       max_size = 10000
     else
-      max_size = 100000000000000000000000 # This  needs to be implented better
+      # max_size = 100000000000000000000000 # This  needs to be implented better
+      max_size = +1.0 / 0.0
     end
     max_size
   end
