@@ -12,6 +12,7 @@ class Probability
     @output_messages = OutputMessages.new
     @equal_win_loss_flag = true
     @maximum_size        = true
+    @size_minimum_flag   = true
 
     puts "Welcome to Forex trader"
     menu
@@ -21,7 +22,7 @@ class Probability
     puts "Probability trader takes 10,000 trades based on your percentage."
     puts "The defaults are currently set as:"
     puts "Winners and losers the same size? #{@equal_win_loss_flag}"
-    puts "Size minimum used?"
+    puts "Size minimum used? #{@size_minimum_flag}"
     puts "Size maximum used?"
     puts "Trading sizes based on account equity or the last trade?"
     puts "and so on..."
@@ -57,7 +58,6 @@ class Probability
     if @maximum_size == true
       max_size = 10000
     else
-      # max_size = 100000000000000000000000 # This  needs to be implented better
       max_size = +1.0 / 0.0
     end
     max_size
@@ -72,8 +72,6 @@ class Probability
     new_size = maximum_size  if new_size > maximum_size
   	new_size
   end
-
-  
 
   def new_size_based_on_equity(new_size, ongoing_profits, trade, index)
     puts "I'm in new_size_based_on_equity and new_size is :#{new_size}:"
@@ -95,18 +93,20 @@ class Probability
   def new_size_based_on_prior_trade(new_size, ongoing_profits, trade, index)
     #This is for a percentage based on the prior winner or loser. 
     puts "#{new_size} is starting off as..."
-      if trade == 1 
-        @trade_saver << profit_loss(new_size, trade)    
-        new_size *= 2
-        @prior_trade_size = new_size
-        # new_size  = 100                     # Use if when you win, you go back to an arbitrary 'starting size'
-        # new_size  = size_maximum(new_size)  # Use if imposing a size_maximum
+    if trade == 1 
+      @trade_saver << profit_loss(new_size, trade)    
+      new_size *= 2
+      @prior_trade_size = new_size
+      # new_size  = 100                     # Use if when you win, you go back to an arbitrary 'starting size'
+      # new_size  = size_maximum(new_size)  # Use if imposing a size_maximum
     else
-        @trade_saver << profit_loss(new_size, trade)
-        new_size *= 4
-      # new_size  = 100                       # Use if when you lose, you go back to an arbitrary 'starting size'
-        new_size  = size_minimum(new_size)
-        @prior_trade_size = new_size
+      @trade_saver << profit_loss(new_size, trade)
+      new_size *= 4
+    # new_size  = 100                       # Use if when you lose, you go back to an arbitrary 'starting size'
+      if size_minimum_flag == true
+        new_size = size_minimum(new_size)
+      end
+      @prior_trade_size = new_size
     end
     ongoing_profits << @trade_saver.inject(:+)
   end
