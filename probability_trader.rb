@@ -13,7 +13,7 @@ class Probability
     @equal_win_loss_flag = true
     @maximum_size        = true
     @size_minimum_flag   = true
-
+    @arbitrary_starting_size_flag = true
     puts "Welcome to Forex trader"
     menu
   end
@@ -23,6 +23,7 @@ class Probability
     puts "The defaults are currently set as:"
     puts "Winners and losers the same size? #{@equal_win_loss_flag}"
     puts "Size minimum used? #{@size_minimum_flag}"
+    puts "Arbitrary_starting_size? #{arbitrary_starting_size_flag}"
     puts "Size maximum used?"
     puts "Trading sizes based on account equity or the last trade?"
     puts "and so on..."
@@ -73,6 +74,10 @@ class Probability
   	new_size
   end
 
+  def arbitrary_starting_size
+    100
+  end
+
   def new_size_based_on_equity(new_size, ongoing_profits, trade, index)
     puts "I'm in new_size_based_on_equity and new_size is :#{new_size}:"
     @trade_saver << profit_loss(new_size, trade)
@@ -97,7 +102,9 @@ class Probability
       @trade_saver << profit_loss(new_size, trade)    
       new_size *= 2
       @prior_trade_size = new_size
-      # new_size  = 100                     # Use if when you win, you go back to an arbitrary 'starting size'
+      if @arbitrary_starting_size_flag == true
+        new_size  = arbitrary_starting_size      # Use if when you win, you go back to an arbitrary 'starting size'
+      end
       # new_size  = size_maximum(new_size)  # Use if imposing a size_maximum
     else
       @trade_saver << profit_loss(new_size, trade)
