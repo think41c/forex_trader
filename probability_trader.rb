@@ -14,7 +14,7 @@ class Probability
     @maximum_size        = true
     @size_minimum_flag   = true
     @arbitrary_starting_size_flag = true
-    puts "Welcome to Forex trader"
+    @output_messages.welcome
     menu
   end
 
@@ -23,7 +23,7 @@ class Probability
     puts "The defaults are currently set as:"
     puts "Winners and losers the same size? #{@equal_win_loss_flag}"
     puts "Size minimum used? #{@size_minimum_flag}"
-    puts "Arbitrary_starting_size? #{arbitrary_starting_size_flag}"
+    puts "Arbitrary_starting_size? #{@arbitrary_starting_size_flag}"
     puts "Size maximum used?"
     puts "Trading sizes based on account equity or the last trade?"
     puts "and so on..."
@@ -85,7 +85,7 @@ class Probability
     puts "#{equity_percent_to_risk*100}% of your equity is #{(ongoing_profits[-1]* equity_percent_to_risk).to_i}"
     equity_based_size = ongoing_profits[-1] * equity_percent_to_risk
     if equity_based_size < starting_size
-      if size_minimum_flag == true
+      if @size_minimum_flag == true
         new_size = starting_size  
       else
         new_size = equity_based_size
