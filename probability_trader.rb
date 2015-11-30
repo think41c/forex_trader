@@ -7,6 +7,7 @@ require './output_messages.rb'
 class Probability
 
   def initialize 
+    system("clear")
     @size_style      = SizeStyle.new
     @get_sequences   = TradeCreator.new
     @output_messages = OutputMessages.new
