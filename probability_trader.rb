@@ -172,6 +172,8 @@ class Probability
 
   def display_all_trades
     puts @trade_saver
+    puts "Hit Enter to continue"
+    gets.chomp.downcase
     initialize
   end
 
