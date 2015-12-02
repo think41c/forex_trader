@@ -15,6 +15,7 @@ class Probability
     @maximum_size        = true
     @size_minimum_flag   = true
     @arbitrary_starting_size_flag = true
+    @based_on_equity_flag         = true
     @output_messages.welcome
     menu
   end
@@ -101,6 +102,7 @@ class Probability
 
   def new_size_based_on_prior_trade(new_size, ongoing_profits, trade, index)
     #This is for a percentage based on the prior winner or loser. 
+
     puts "#{new_size} is starting off as..."
     if trade == 1 
       @trade_saver << profit_loss(new_size, trade)    
@@ -130,8 +132,14 @@ class Probability
 
   	all_trades.each_with_index do |trade, index| 
       ### Comment out the method of new size methodology you don't want ######
+      if @based_on_equity_flag == true
+        puts "New size is based on a percentage of your equity"
         new_size_based_on_equity(new_size, ongoing_profits, trade, index)
-      # new_size_based_on_prior_trade(new_size, ongoing_profits, trade, index)
+      else 
+        puts "New size is based on the prior trade, such as a (anti)-margingale system."  
+        new_size_based_on_prior_trade(new_size, ongoing_profits, trade, index)
+      end
+
       new_size = @prior_trade_size #  <---- ***This causing new_size to turn into nil.*** 
     
       puts "Trade #{index} begins w/ your current overall P&L of #{@trade_saver.inject(:+).to_i} \n\n"
@@ -142,7 +150,7 @@ class Probability
 
   
   def drawdown(ongoing_profits)
-    ongoing_profits = [10,20,0,100]   # **This is for testing purposes - remove when verified drawdown is 20**
+    # ongoing_profits = [10,20,0,100]   # **This is for testing purposes - remove when verified drawdown is 20**
     biggest_drawdown = 0 
     low  = 0 
     high = 0 
