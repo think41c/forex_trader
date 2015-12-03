@@ -13,7 +13,7 @@ class Probability
     @output_messages = OutputMessages.new
     @equal_win_loss_flag = true
     @maximum_size        = true
-    @size_minimum_flag   = true
+    @size_minimum_flag   = false
     @arbitrary_starting_size_flag = true
     @based_on_equity_flag         = true
     @output_messages.welcome
@@ -131,7 +131,9 @@ class Probability
     ongoing_profits = []
 
   	all_trades.each_with_index do |trade, index| 
-      ### Comment out the method of new size methodology you don't want ######
+
+      puts "Trade #{index}. Starting P&L: #{@trade_saver.inject(:+).to_i} \n"
+
       if @based_on_equity_flag == true
         puts "New size is based on a percentage of your equity"
         new_size_based_on_equity(new_size, ongoing_profits, trade, index)
@@ -142,7 +144,7 @@ class Probability
 
       new_size = @prior_trade_size #  <---- ***This causing new_size to turn into nil.*** 
     
-      puts "Trade #{index} begins w/ your current overall P&L of #{@trade_saver.inject(:+).to_i} \n\n"
+      
   	end
     drawdown_result = drawdown(ongoing_profits)
     @output_messages.end_report(ongoing_profits, @trade_saver, drawdown_result, @get_sequences.percentage.to_i)
