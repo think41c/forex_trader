@@ -108,7 +108,7 @@ class Probability
       new_size *= 2
       @prior_trade_size = new_size
       if @arbitrary_starting_size_flag == true
-        new_size  = arbitrary_starting_size      # Use if when you win, you go back to an arbitrary 'starting size'
+        new_size  = arbitrary_starting_size      # When you win, revert arbitrary 'starting size' (used in martingale strategies)
       end
       
       if @maximum_size == true
