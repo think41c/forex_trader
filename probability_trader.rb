@@ -111,7 +111,11 @@ class Probability
       if @arbitrary_starting_size_flag == true
         new_size  = arbitrary_starting_size      # Use if when you win, you go back to an arbitrary 'starting size'
       end
-      # new_size  = size_maximum(new_size)  # Use if imposing a size_maximum
+      
+      if @maximum_size == true
+        new_size  = size_maximum(new_size)
+      end
+
     else
       @trade_saver << profit_loss(new_size, trade)
       new_size *= 4
