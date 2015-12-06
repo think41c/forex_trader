@@ -28,8 +28,7 @@ class Probability
     puts "Arbitrary_starting_size? #{@arbitrary_starting_size_flag}"
     puts "Size maximum used?"
     puts "Trading sizes based on account equity or the last trade?"
-    puts "and so on..."
-
+    puts "Default starting size is #{starting_size}"
     all_trades = @get_sequences.trade_gen(get_user_data)
     trade_sizes(all_trades)
     display_trades
@@ -53,7 +52,7 @@ class Probability
   	user_percent_win = gets.chomp.to_i
   end
 
-  def starting_size # This can be user input later
+  def starting_size
 	  100  
   end
 
