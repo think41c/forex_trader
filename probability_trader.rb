@@ -134,9 +134,7 @@ class Probability
     ongoing_profits = []
 
   	all_trades.each_with_index do |trade, index| 
-
       puts "Trade #{index}. Starting P&L: #{@trade_saver.inject(:+).to_i} \n"
-
       if @based_on_equity_flag == true
         puts "New size is based on a percentage of your equity"
         new_size_based_on_equity(new_size, ongoing_profits, trade, index)
@@ -144,11 +142,9 @@ class Probability
         puts "New size is based on the prior trade, such as a (anti)-margingale system."  
         new_size_based_on_prior_trade(new_size, ongoing_profits, trade, index)
       end
-
-      new_size = @prior_trade_size #  <---- ***This causing new_size to turn into nil.*** 
-    
-      
+      new_size = @prior_trade_size
   	end
+
     drawdown_result = drawdown(ongoing_profits)
     @output_messages.end_report(ongoing_profits, @trade_saver, drawdown_result, @get_sequences.percentage.to_i)
   end
@@ -189,8 +185,6 @@ class Probability
     gets.chomp.downcase
     initialize
   end
-
-
 end
 
 a = Probability.new
