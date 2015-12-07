@@ -26,7 +26,7 @@ class Probability
     puts "Winners and losers the same size? #{@equal_win_loss_flag}"
     puts "Size minimum used? #{@size_minimum_flag}"
     puts "Arbitrary_starting_size? #{@arbitrary_starting_size_flag}"
-    puts "Size maximum used?"
+    puts "Size maximum used? #{@maximum_size}"
     puts "Trading sizes based on account equity or the last trade?"
     puts "Default starting size is #{starting_size}"
     all_trades = @get_sequences.trade_gen(get_user_data)
