@@ -27,7 +27,7 @@ class Probability
     puts "Size minimum used? #{@size_minimum_flag}"
     puts "Arbitrary_starting_size? #{@arbitrary_starting_size_flag}"
     puts "Size maximum used? #{@maximum_size}"
-    puts "Trading sizes based on account equity or the last trade?"
+    puts "Trading sizes based on account equity? #{@based_on_equity_flag}"
     puts "Default starting size is #{starting_size}"
     all_trades = @get_sequences.trade_gen(get_user_data)
     trade_sizes(all_trades)
@@ -133,13 +133,17 @@ class Probability
   	@trade_saver    = []
     ongoing_profits = []
 
+    if @based_on_equity_flag == true
+      puts "New size is based on a percentage of your equity"
+    else
+      puts "New size is based on the prior trade, such as a (anti)-margingale system."  
+    end
+
   	all_trades.each_with_index do |trade, index| 
       puts "Trade #{index}. Starting P&L: #{@trade_saver.inject(:+).to_i} \n"
       if @based_on_equity_flag == true
-        puts "New size is based on a percentage of your equity"
         new_size_based_on_equity(new_size, ongoing_profits, trade, index)
       else 
-        puts "New size is based on the prior trade, such as a (anti)-margingale system."  
         new_size_based_on_prior_trade(new_size, ongoing_profits, trade, index)
       end
       new_size = @prior_trade_size
