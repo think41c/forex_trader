@@ -184,7 +184,12 @@ class Probability
   end
 
   def display_all_trades
-    puts @trade_saver
+    pnl_total = 0
+    @trade_saver.each_with_index do |profit, index|
+      pnl_total += profit
+      puts "On trade #{index}, you made/lost: #{profit}. Your cumulative P&L is #{pnl_total}"
+    end
+
     puts "Hit Enter to continue"
     gets.chomp.downcase
     initialize
