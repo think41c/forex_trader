@@ -187,7 +187,7 @@ class Probability
     pnl_total = 0
     @trade_saver.each_with_index do |profit, index|
       pnl_total += profit
-      puts "On trade #{index}, you made/lost: #{profit}. Your cumulative P&L is #{pnl_total}"
+      puts "On trade #{index}, you made/lost: #{profit.to_i}. Your cumulative P&L is #{pnl_total.to_i}"
     end
 
     puts "Hit Enter to continue"
