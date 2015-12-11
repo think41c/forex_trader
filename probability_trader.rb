@@ -15,7 +15,7 @@ class Probability
     @maximum_size        = true
     @size_minimum_flag   = false
     @arbitrary_starting_size_flag = true
-    @based_on_equity_flag         = true
+    @based_on_equity_flag         = false
     @output_messages.welcome
     menu
   end
@@ -112,14 +112,14 @@ class Probability
       end
       
       if @maximum_size == true
-        new_size  = size_maximum(new_size)
+        new_size  = size_minimum(new_size)
       end
 
     else
       @trade_saver << profit_loss(new_size, trade)
       new_size *= 4
     # new_size  = 100                       # Use if when you lose, you go back to an arbitrary 'starting size'
-      if size_minimum_flag == true
+      if @size_minimum_flag == true
         new_size = size_minimum(new_size)
       end
       @prior_trade_size = new_size
