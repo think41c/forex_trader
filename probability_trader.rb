@@ -102,7 +102,7 @@ class Probability
   def new_size_based_on_prior_trade(new_size, ongoing_profits, trade, index)
     #This is for a percentage based on the prior winner or loser. 
 
-    puts "#{new_size} is starting off as..."
+    puts "The size of the next trade will be the following: #{new_size}"
     if trade == 1 
       @trade_saver << profit_loss(new_size, trade)    
       new_size *= 2
