@@ -164,7 +164,7 @@ class Probability
     low  = 0 
     high = 0 
     ongoing_profits.each_with_index do |current_profit, index|
-      puts "The following code should be doing things to calculate drawdown."
+      # puts "The following code should be doing things to calculate drawdown."
       if current_profit > biggest_drawdown  # For a winning trade to start, it will always go here first.
         high = current_profit               # The current profits will be the high of the ongoing equity.
       elsif current_profit < low               
@@ -192,6 +192,7 @@ class Probability
     @trade_saver.each_with_index do |profit, index|
       pnl_total += profit
       puts "On trade #{index}, you made/lost: #{profit.to_i}. Your cumulative P&L is #{pnl_total.to_i}"
+      # **** This needs to show whether the trade was a winner or loser ****
     end
 
     puts "Hit Enter to continue"
