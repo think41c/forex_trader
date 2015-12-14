@@ -118,7 +118,11 @@ class Probability
     else
       @trade_saver << profit_loss(new_size, trade)
       new_size *= 4
-    # new_size  = 100                       # Use if when you lose, you go back to an arbitrary 'starting size'
+
+      if @arbitrary_starting_size_flag == true
+        new_size  = arbitrary_starting_size      # When you win, revert arbitrary 'starting size' (used in martingale strategies)
+      end
+
       if @size_minimum_flag == true
         new_size = size_minimum(new_size)
       end
