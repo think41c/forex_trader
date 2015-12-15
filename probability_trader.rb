@@ -144,7 +144,10 @@ class Probability
     end
 
   	all_trades.each_with_index do |trade, index| 
-      puts "Trade #{index}. Starting P&L: #{@trade_saver.inject(:+).to_i} \n"
+      puts "Trade #{index}. Starting equity: #{@trade_saver.inject(:+).to_i} \n"
+      puts "The trade was a winner." if trade > 0 
+      puts "the trade was a loser."  if trade < 0
+
       if @based_on_equity_flag == true
         new_size_based_on_equity(new_size, ongoing_profits, trade, index)
       else 
