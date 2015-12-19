@@ -11,6 +11,14 @@ class Drawdown
 		puts "The numbers to loko at are #{@numbers}"
 		@numbers.each do |x|
 			puts "looking at #{x}"
+			if x > high
+			  high = x
+      end
+      
+      if x < low 
+        low = x
+      end
+
 		end
 
 	end
