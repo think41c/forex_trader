@@ -5,7 +5,7 @@ class Drawdown
 
 	def calculate
 		high     = 0
-		low      = 0
+		low      = @numbers[0]
 		drawdown = 0
 
 		puts "The numbers to loko at are #{@numbers}"
@@ -18,11 +18,13 @@ class Drawdown
       if x < low 
         low = x
       end
+      puts low
+       
 
 		end
 
 	end
 end
 
-a = Drawdown.new([1,2,3])
-a.calculate
+a = Drawdown.new([1,3,1])
+a.calculat
