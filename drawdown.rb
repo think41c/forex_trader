@@ -13,9 +13,10 @@ class Drawdown
 			puts "looking at #{x}"
 			if x > high
 			  high = x
+        low  = x
       end
       
-      if x < low 
+      if low < high  
         low = x
       end
       puts low
@@ -26,5 +27,5 @@ class Drawdown
 	end
 end
 
-a = Drawdown.new([1,3,1])
-a.calculat
+a = Drawdown.new([1,3,2])
+a.calculate
