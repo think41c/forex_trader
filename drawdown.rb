@@ -13,13 +13,12 @@ class Drawdown
 			puts "looking at #{x}"
 			if x > high
 			  high = x
-        low  = x
       end
       
-      if low < high  
+      if x < high  
         low = x
       end
-      puts low
+      puts "Current low is #{low} and the high is #{high}"
        
 
 		end
