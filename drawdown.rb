@@ -21,6 +21,7 @@ class Drawdown
       
       if x < high  
         low = x
+        puts "The drawdown could be #{high - low}"
       end
 
       puts "Current low is #{low} and the high is #{high}"
@@ -31,5 +32,5 @@ class Drawdown
 	end
 end
 
-a = Drawdown.new([1,4,0])
+a = Drawdown.new([1,4,0,5,0])
 a.calculate
