@@ -28,10 +28,11 @@ class Drawdown
       puts "Current low is #{low} and the high is #{high}"
       puts "Drawdown is #{high-low}"
       p drawdown
+      puts "The drawdown is #{drawdown.max}"
 		end
 
 	end
 end
 
-a = Drawdown.new([1,4,0,5,0,2,3])
+a = Drawdown.new([1,4,0,5,0,2,3,6,0])
 a.calculate
