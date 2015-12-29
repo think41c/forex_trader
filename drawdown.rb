@@ -34,5 +34,5 @@ class Drawdown
 	end
 end
 
-a = Drawdown.new([1,4,0,5,0,2,3,6,0])
+a = Drawdown.new([1,4,0,5,0,2,3,6,0,500,400,900,100,700,0,0,1000])
 a.calculate
