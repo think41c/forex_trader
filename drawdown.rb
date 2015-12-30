@@ -22,17 +22,17 @@ class Drawdown
       if x < high  
         low = x
         puts "The drawdown could be #{high - low}"
-        drawdown << high-low
+        drawdown << high-low    # Probably doesn't need to be an array, but can computed w/ an if statement.
       end
 
       puts "Current low is #{low} and the high is #{high}"
       puts "Drawdown is #{high-low}"
       p drawdown
-      puts "The drawdown is #{drawdown.max}"
+      puts "The drawdown is #{drawdown.max}"  
 		end
 
 	end
 end
 
-a = Drawdown.new([1,4,0,5,0,2,3,6,0,500,400,900,100,700,0,0,1000])
+a = Drawdown.new([1,4,0,5,0,2,3,6,0,500,400,900,100,700,0,0,1000,900,11000,10000])
 a.calculate
