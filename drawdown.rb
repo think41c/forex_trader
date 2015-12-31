@@ -9,9 +9,7 @@ class Drawdown
 		drawdown = []
     new_high = false
 
-		puts "The numbers to loko at are #{@numbers}"
 		@numbers.each do |x|
-			puts "looking at #{x}"
 			if x > high
 			  high = x
         new_high = true  # every number after this that isn't a) a new high and b) lower than this number should
@@ -21,13 +19,9 @@ class Drawdown
       
       if x < high  
         low = x
-        puts "The drawdown could be #{high - low}"
         drawdown << high-low    # Probably doesn't need to be an array, but can computed w/ an if statement.
       end
 
-      puts "Current low is #{low} and the high is #{high}"
-      puts "Drawdown is #{high-low}"
-      p drawdown
       puts "The drawdown is #{drawdown.max}"  
 		end
 
