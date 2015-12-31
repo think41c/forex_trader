@@ -7,15 +7,9 @@ class Drawdown
 		high     = 0
 		low      = @numbers[0]
 		drawdown = []
-    new_high = false
 
 		@numbers.each do |x|
-			if x > high
-			  high = x
-        new_high = true  # every number after this that isn't a) a new high and b) lower than this number should
-                         # be subtracted out for drawdown.
-        drawdown << 0    # Put in a 0 into the drawdown. We're looking for the highest number in the drawdown array. 
-      end
+			high = x if x > high
       
       if x < high  
         low = x
