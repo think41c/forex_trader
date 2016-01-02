@@ -5,15 +5,13 @@ class Drawdown
 
 	def calculate
 		high     = 0
-		low      = @numbers[0]
 		drawdown = []
 
 		@numbers.each do |x|
 			high = x if x > high
       
       if x < high  
-        low = x
-        drawdown << high-low    # Probably doesn't need to be an array, but can computed w/ an if statement.
+        drawdown << high-x    # Probably doesn't need to be an array, but can computed w/ an if statement.
       end
 
       puts "The drawdown is #{drawdown.max}"  
