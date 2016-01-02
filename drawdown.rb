@@ -9,14 +9,9 @@ class Drawdown
 
 		@numbers.each do |x|
 			high = x if x > high
-      
-      if x < high  
-        drawdown << high-x    # Probably doesn't need to be an array, but can computed w/ an if statement.
-      end
-
+      drawdown << high-x if x < high  
       puts "The drawdown is #{drawdown.max}"  
 		end
-
 	end
 end
 
