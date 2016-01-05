@@ -161,24 +161,18 @@ class Probability
   end
 
   
-  def drawdown(ongoing_profits)
-    # ongoing_profits = [10,20,0,100]   # **This is for testing purposes - remove when verified drawdown is 20**
-    biggest_drawdown = 0 
-    low  = 0 
-    high = 0 
-    ongoing_profits.each_with_index do |current_profit, index|
-      # puts "The following code should be doing things to calculate drawdown."
-      if current_profit > biggest_drawdown  # For a winning trade to start, it will always go here first.
-        high = current_profit               # The current profits will be the high of the ongoing equity.
-      elsif current_profit < low               
-        low  = current_profit
-      else 
-        low  = current_profit
+  def drawdown(numbers)
+    high         = 0
+    drawdown = 0
+    numbers.each do |x|
+      high = x if x > high
+      if x < high
+        if high-x > drawdown
+          drawdown = high-x
+        end
       end
-      biggest_drawdown = high - low
     end
-
-    biggest_drawdown 
+    drawdown
   end
 
   def profit_loss(new_size, trade) 
