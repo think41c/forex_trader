@@ -5,20 +5,17 @@ class Drawdown
 
 	def calculate
 		high     = 0
-		drawdown = []
     biggest_draw = 0
+
 		@numbers.each do |x|
 			high = x if x > high
-      drawdown << high-x if x < high  
-      puts "The drawdown is #{drawdown.max}"  
-
       if x < high
         if high-x > biggest_draw
           biggest_draw = high-x
         end
       end
-      puts biggest_draw
 		end
+    puts biggest_draw
 	end
 end
 
