@@ -5,7 +5,7 @@ class OutputMessages
       Your final P&L is #{trade_saver.inject(:+)} 
       Your biggest loser was #{trade_saver.min} 
       Your lowest account balance was #{ongoing_profits.min} 
-      Your biggest drawdown was #{} 
+      Your biggest drawdown was #{drawdown_result} 
       The actual percentage of winners was #{percentage}"
     STR
   end
